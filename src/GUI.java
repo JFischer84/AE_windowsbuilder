@@ -26,13 +26,27 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
 import java.awt.Font;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JSplitPane;
+import javax.swing.JInternalFrame;
+
+import java.awt.Component;
+
+import javax.swing.Box;
+import javax.swing.JTabbedPane;
+import javax.swing.JSeparator;
+
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class GUI extends JFrame {
 
 	int attributePoints = 20;
 	int qualitiesPoints = 8;
+	public static final int ATTRIBUTE_MAX = 20;
+	public static final int QUALITIES_MAX = 8;
 
 	private JPanel contentPane;
 
@@ -63,9 +77,52 @@ public class GUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JComboBox comboBoxRaceBonus = new JComboBox();
+		comboBoxRaceBonus.setBounds(430, 225, 146, 20);
+		contentPane.add(comboBoxRaceBonus);
+		
+		JComboBox comboBoxProfessionBonus = new JComboBox();
+		comboBoxProfessionBonus.setBounds(430, 279, 146, 20);
+		contentPane.add(comboBoxProfessionBonus);
+		
+		JComboBox comboBoxMageType = new JComboBox();
+		comboBoxMageType.setBounds(10, 245, 146, 20);
+		contentPane.add(comboBoxMageType);
+		comboBoxMageType.addItem("Heiler");
+		comboBoxMageType.addItem("Zauberer");
+		comboBoxMageType.addItem("Schwarzmagier");
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(414, 22, 18, 178);
+		contentPane.add(separator);
+		
+		JLabel lblAttributePoints = new JLabel("");
+		lblAttributePoints.setFont(new Font("Tahoma", Font.BOLD, 9));
+		lblAttributePoints.setBounds(388, 11, 44, 34);
+		contentPane.add(lblAttributePoints);
 
 		JComboBox comboBoxProfession = new JComboBox();
-		comboBoxProfession.addItem("Magier");
+		comboBoxProfession.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				comboBoxProfessionBonus.removeAllItems();
+				comboBoxMageType.setEnabled(false);
+				if (comboBoxProfession.getSelectedItem() == "Zauberwirker") {
+					comboBoxProfessionBonus.addItem("Verstand");
+					comboBoxProfessionBonus.addItem("Aura");
+					comboBoxMageType.setEnabled(true);
+					
+				} else if (comboBoxProfession.getSelectedItem() == "Krieger") {
+					comboBoxProfessionBonus.addItem("Stärke");
+					comboBoxProfessionBonus.addItem("Härte");
+				} else if (comboBoxProfession.getSelectedItem() == "Späher") {
+					comboBoxProfessionBonus.addItem("Bewegung");
+					comboBoxProfessionBonus.addItem("Geschick");
+				}
+			}
+		});
+		comboBoxProfession.addItem("Zauberwirker");
 		comboBoxProfession.addItem("Krieger");
 		comboBoxProfession.addItem("Späher");
 		comboBoxProfession.setBounds(10, 56, 146, 20);
@@ -82,11 +139,34 @@ public class GUI extends JFrame {
 		contentPane.add(lblVolk);
 
 		JComboBox comboBoxRace = new JComboBox();
+		comboBoxRace.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				comboBoxRaceBonus.removeAllItems();
+				if (comboBoxRace.getSelectedItem() == "Elf") {
+					comboBoxRaceBonus.addItem("Bewegung");
+					comboBoxRaceBonus.addItem("Geschick");
+					comboBoxRaceBonus.addItem("Aura");
+				} else if (comboBoxRace.getSelectedItem() == "Mensch") {
+					comboBoxRaceBonus.addItem("Bewegung");
+					comboBoxRaceBonus.addItem("Geschick");
+					comboBoxRaceBonus.addItem("Aura");
+					comboBoxRaceBonus.addItem("Stärke");
+					comboBoxRaceBonus.addItem("Härte");
+					comboBoxRaceBonus.addItem("Verstand");
+				} else if (comboBoxRace.getSelectedItem() == "Zwerg") {
+					comboBoxRaceBonus.addItem("Stärke");
+					comboBoxRaceBonus.addItem("Härte");
+					comboBoxRaceBonus.addItem("Geschick");
+				}
+			}
+		});
 		comboBoxRace.addItem("Elf");
 		comboBoxRace.addItem("Mensch");
 		comboBoxRace.addItem("Zwerg");
 		comboBoxRace.setBounds(10, 141, 146, 20);
 		contentPane.add(comboBoxRace);
+		
+		
 
 		JLabel lblAttribut = new JLabel("Attribute");
 		lblAttribut.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -94,57 +174,70 @@ public class GUI extends JFrame {
 		contentPane.add(lblAttribut);
 
 		JLabel lblKrper = new JLabel("K\u00F6rper");
+		lblKrper.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblKrper.setBounds(274, 49, 44, 34);
 		contentPane.add(lblKrper);
 
 		JLabel lblAgilitt = new JLabel("Agilit\u00E4t");
+		lblAgilitt.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAgilitt.setBounds(274, 96, 44, 34);
 		contentPane.add(lblAgilitt);
 
 		JLabel lblGeist = new JLabel("Geist");
+		lblGeist.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblGeist.setBounds(274, 141, 44, 34);
 		contentPane.add(lblGeist);
 
-		SpinnerModel modelAgility = new SpinnerNumberModel(0, 0, 8, 1);
-		SpinnerModel modelMind = new SpinnerNumberModel(0, 0, 8, 1);
-		SpinnerModel modelBody = new SpinnerNumberModel(0, 0, 8, 1);
+		SpinnerModel aModelAgility = new SpinnerNumberModel(0, 0, 8, 1);
+		SpinnerModel aModelMind = new SpinnerNumberModel(0, 0, 8, 1);
+		SpinnerModel aModelBody = new SpinnerNumberModel(0, 0, 8, 1);
+		
+		SpinnerModel qModelStrength = new SpinnerNumberModel(0, 0, 4, 1);
+		SpinnerModel qModelHardness = new SpinnerNumberModel(0, 0, 4, 1);
+		
+		SpinnerModel qModelMovement = new SpinnerNumberModel(0, 0, 4, 1);
+		SpinnerModel qModelDeftness = new SpinnerNumberModel(0, 0, 4, 1);
+		
+		SpinnerModel qModelBrain = new SpinnerNumberModel(0, 0, 4, 1);
+		SpinnerModel qModelAura = new SpinnerNumberModel(0, 0, 4, 1);
 
-		JSpinner agilitySpinner = new JSpinner(modelAgility);
+		JSpinner agilitySpinner = new JSpinner(aModelAgility);
+		agilitySpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				attributePoints = ATTRIBUTE_MAX - ((int)aModelBody.getValue() + (int)aModelAgility.getValue() + (int)aModelMind.getValue());
+				lblAttributePoints.setText(Integer.toString(attributePoints));
+			}
+		});
 		agilitySpinner.setBounds(328, 103, 44, 20);
 		contentPane.add(agilitySpinner);
 
-		JSpinner mindSpinner = new JSpinner(modelMind);
+		JSpinner mindSpinner = new JSpinner(aModelMind);
+		mindSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				attributePoints = ATTRIBUTE_MAX - ((int)aModelBody.getValue() + (int)aModelAgility.getValue() + (int)aModelMind.getValue());
+				lblAttributePoints.setText(Integer.toString(attributePoints));
+				
+			}
+		});
 		mindSpinner.setBounds(328, 148, 44, 20);
 		contentPane.add(mindSpinner);
 
-		JLabel lblAttributePoints = new JLabel("");
-		lblAttributePoints.setFont(new Font("Tahoma", Font.BOLD, 9));
-		lblAttributePoints.setBounds(388, 11, 44, 34);
-		contentPane.add(lblAttributePoints);
+		
 
 		lblAttributePoints.setText(Integer.toString(attributePoints));
 
 		JLabel lblQualitiesPoints = new JLabel("");
 		lblQualitiesPoints.setFont(new Font("Tahoma", Font.BOLD, 9));
-		lblQualitiesPoints.setBounds(571, 11, 44, 34);
+		lblQualitiesPoints.setBounds(584, 11, 44, 34);
 		contentPane.add(lblQualitiesPoints);
 
 		lblQualitiesPoints.setText(Integer.toString(qualitiesPoints));
 
-		JSpinner bodySpinner = new JSpinner(modelBody);
+		JSpinner bodySpinner = new JSpinner(aModelBody);
 		bodySpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				JSpinner source = (JSpinner) arg0.getSource();
-				if (source.getVerifyInputWhenFocusTarget()) {
-					
-					if ((Integer) source.getPreviousValue() < (Integer) source
-							.getValue()) {
-						attributePoints--;
-					} else if ((Integer) source.getPreviousValue() > (Integer) source
-							.getValue()) {
-						attributePoints++;
-					}
-				}
+						
+				attributePoints = ATTRIBUTE_MAX - ((int)aModelBody.getValue() + (int)aModelAgility.getValue() + (int)aModelMind.getValue());
 				lblAttributePoints.setText(Integer.toString(attributePoints));
 			}
 		});
@@ -157,60 +250,100 @@ public class GUI extends JFrame {
 		contentPane.add(lblEigenschaften);
 
 		JLabel lblStrke = new JLabel("St\u00E4rke");
-		lblStrke.setBounds(442, 49, 44, 34);
+		lblStrke.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblStrke.setBounds(468, 56, 44, 34);
 		contentPane.add(lblStrke);
 
 		JLabel lblHrte = new JLabel("H\u00E4rte");
-		lblHrte.setBounds(586, 49, 44, 34);
+		lblHrte.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblHrte.setBounds(619, 56, 44, 34);
 		contentPane.add(lblHrte);
 
-		SpinnerModel modelStrength = new SpinnerNumberModel(0, 0, 4, 1);
-		SpinnerModel modelHardness = new SpinnerNumberModel(0, 0, 4, 1);
+		
 
-		JSpinner strengthSpinner = new JSpinner(modelStrength);
-		strengthSpinner.setBounds(496, 56, 44, 20);
+		JSpinner strengthSpinner = new JSpinner(qModelStrength);
+		strengthSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				qualitiesPoints = QUALITIES_MAX - ((int)qModelStrength.getValue() + (int)qModelHardness.getValue() +
+						(int)qModelAura.getValue() + (int)qModelBrain.getValue() + (int)qModelDeftness.getValue() + (int)qModelMovement.getValue());
+				lblQualitiesPoints.setText(Integer.toString(qualitiesPoints));
+			}
+		});
+		strengthSpinner.setBounds(532, 63, 44, 20);
 		contentPane.add(strengthSpinner);
 
-		JSpinner hardnessSpinner = new JSpinner(modelHardness);
-		hardnessSpinner.setBounds(640, 56, 44, 20);
+		JSpinner hardnessSpinner = new JSpinner(qModelHardness);
+		hardnessSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				qualitiesPoints = QUALITIES_MAX - ((int)qModelStrength.getValue() + (int)qModelHardness.getValue() +
+						(int)qModelAura.getValue() + (int)qModelBrain.getValue() + (int)qModelDeftness.getValue() + (int)qModelMovement.getValue());
+				lblQualitiesPoints.setText(Integer.toString(qualitiesPoints));
+			}
+		});
+		hardnessSpinner.setBounds(673, 63, 44, 20);
 		contentPane.add(hardnessSpinner);
 
 		JLabel lblBewegung = new JLabel("Bewegung");
-		lblBewegung.setBounds(442, 96, 58, 34);
+		lblBewegung.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblBewegung.setBounds(468, 96, 58, 34);
 		contentPane.add(lblBewegung);
 
 		JLabel lblGeschick = new JLabel("Geschick");
-		lblGeschick.setBounds(586, 96, 44, 34);
+		lblGeschick.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblGeschick.setBounds(619, 96, 44, 34);
 		contentPane.add(lblGeschick);
 
-		SpinnerModel modelMovement = new SpinnerNumberModel(0, 0, 4, 1);
-		SpinnerModel modelDeftness = new SpinnerNumberModel(0, 0, 4, 1);
 
-		JSpinner movementSpinner = new JSpinner(modelMovement);
-		movementSpinner.setBounds(496, 103, 44, 20);
+		JSpinner movementSpinner = new JSpinner(qModelMovement);
+		movementSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				qualitiesPoints = QUALITIES_MAX - ((int)qModelStrength.getValue() + (int)qModelHardness.getValue() +
+						(int)qModelAura.getValue() + (int)qModelBrain.getValue() + (int)qModelDeftness.getValue() + (int)qModelMovement.getValue());
+				lblQualitiesPoints.setText(Integer.toString(qualitiesPoints));
+			}
+		});
+		movementSpinner.setBounds(532, 103, 44, 20);
 		contentPane.add(movementSpinner);
 
-		JSpinner deftnessSpinner = new JSpinner(modelDeftness);
-		deftnessSpinner.setBounds(640, 103, 44, 20);
+		JSpinner deftnessSpinner = new JSpinner(qModelDeftness);
+		deftnessSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				qualitiesPoints = QUALITIES_MAX - ((int)qModelStrength.getValue() + (int)qModelHardness.getValue() +
+						(int)qModelAura.getValue() + (int)qModelBrain.getValue() + (int)qModelDeftness.getValue() + (int)qModelMovement.getValue());
+				lblQualitiesPoints.setText(Integer.toString(qualitiesPoints));
+			}
+		});
+		deftnessSpinner.setBounds(673, 103, 44, 20);
 		contentPane.add(deftnessSpinner);
 
 		JLabel lblVerstand = new JLabel("Verstand");
-		lblVerstand.setBounds(442, 141, 49, 34);
+		lblVerstand.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblVerstand.setBounds(468, 134, 49, 34);
 		contentPane.add(lblVerstand);
 
 		JLabel lblAura = new JLabel("Aura");
-		lblAura.setBounds(586, 141, 44, 34);
+		lblAura.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblAura.setBounds(619, 134, 44, 34);
 		contentPane.add(lblAura);
 
-		SpinnerModel modelBrain = new SpinnerNumberModel(0, 0, 4, 1);
-		SpinnerModel modelAura = new SpinnerNumberModel(0, 0, 4, 1);
-
-		JSpinner brainSpinner = new JSpinner(modelBrain);
-		brainSpinner.setBounds(496, 148, 44, 20);
+		JSpinner brainSpinner = new JSpinner(qModelBrain);
+		brainSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				qualitiesPoints = QUALITIES_MAX - ((int)qModelStrength.getValue() + (int)qModelHardness.getValue() +
+						(int)qModelAura.getValue() + (int)qModelBrain.getValue() + (int)qModelDeftness.getValue() + (int)qModelMovement.getValue());
+				lblQualitiesPoints.setText(Integer.toString(qualitiesPoints));
+			}
+		});
+		brainSpinner.setBounds(532, 141, 44, 20);
 		contentPane.add(brainSpinner);
 
-		JSpinner auraSpinner = new JSpinner(modelAura);
-		auraSpinner.setBounds(640, 148, 44, 20);
+		JSpinner auraSpinner = new JSpinner(qModelAura);
+		auraSpinner.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+			}
+		});
+		auraSpinner.setBounds(673, 141, 44, 20);
 		contentPane.add(auraSpinner);
 
 		JLabel lblPunkte = new JLabel("Punkte: ");
@@ -222,5 +355,26 @@ public class GUI extends JFrame {
 		label.setFont(new Font("Tahoma", Font.BOLD, 9));
 		label.setBounds(532, 11, 44, 34);
 		contentPane.add(label);
+		
+		
+		
+		JLabel lblVolksbonus = new JLabel("Volksbonus");
+		lblVolksbonus.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblVolksbonus.setBounds(323, 218, 76, 34);
+		contentPane.add(lblVolksbonus);
+		
+		JLabel lblKlassenbonus = new JLabel("Klassenbonus");
+		lblKlassenbonus.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblKlassenbonus.setBounds(323, 272, 97, 34);
+		contentPane.add(lblKlassenbonus);
+		
+		JLabel lblZaubererTyp = new JLabel("Zauberer Typ");
+		lblZaubererTyp.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblZaubererTyp.setBounds(10, 200, 146, 34);
+		contentPane.add(lblZaubererTyp);
+		
+	
+		
+		
 	}
 }
