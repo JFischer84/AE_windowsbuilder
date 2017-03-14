@@ -15,6 +15,4 @@ public abstract class Ausruestung {
 		this.name = name;
 		this.preis = preis;
 	}
-	
-
 }

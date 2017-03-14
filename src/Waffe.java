@@ -14,6 +14,4 @@ public class Waffe extends Ausruestung{
 		this.waffenbonus = waffenbonus;
 		this.besonderes = besonderes;
 	}
-	
-
 }

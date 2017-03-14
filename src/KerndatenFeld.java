@@ -6,16 +6,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Kerndaten {
+public class KerndatenFeld {
 
-	public Kerndaten(JPanel contentPane) {
-		JComboBox comboBoxVolksBonus = new JComboBox();
-		comboBoxVolksBonus.setBounds(10, 280, 146, 20);
-		contentPane.add(comboBoxVolksBonus);
-		
-		JComboBox comboBoxKlassenBonus = new JComboBox();
-		comboBoxKlassenBonus.setBounds(10, 350, 146, 20);
-		contentPane.add(comboBoxKlassenBonus);
+	public KerndatenFeld(JPanel contentPane) {
 		
 		JLabel lblVolksfaehigkeiten = new JLabel("Volksfähigkeiten:");
 		lblVolksfaehigkeiten.setBounds(378, 206, 119, 16);
@@ -49,32 +42,44 @@ public class Kerndaten {
 		lblZauberwirkerTyp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblZauberwirkerTyp.setBounds(175, 81, 146, 34);
 		contentPane.add(lblZauberwirkerTyp);
-		
-		
+			
 		JLabel lblZweitesTalent = new JLabel("Zweiter Talentpunkt");
 		lblZweitesTalent.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblZweitesTalent.setBounds(175, 304, 146, 34);
 		contentPane.add(lblZweitesTalent);
-		
-		JComboBox comboBoxZweitesStartTalent = new JComboBox();
-		comboBoxZweitesStartTalent.setBounds(178, 350, 191, 20);
-		contentPane.add(comboBoxZweitesStartTalent);
 		
 		JLabel lblErsterZauber = new JLabel("Erster Zauber");
 		lblErsterZauber.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblErsterZauber.setBounds(175, 159, 146, 34);
 		contentPane.add(lblErsterZauber);
 		
-		JComboBox comboBoxErsterZauber = new JComboBox();
+		JLabel lblVolk = new JLabel("Volk");
+		lblVolk.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblVolk.setBounds(6, 159, 146, 34);
+		contentPane.add(lblVolk);
+		
+		JComboBox<String> comboBoxVolksBonus = new JComboBox<String>();
+		comboBoxVolksBonus.setBounds(10, 280, 146, 20);
+		contentPane.add(comboBoxVolksBonus);
+		
+		JComboBox<String> comboBoxKlassenBonus = new JComboBox<String>();
+		comboBoxKlassenBonus.setBounds(10, 350, 146, 20);
+		contentPane.add(comboBoxKlassenBonus);
+		
+		JComboBox<String> comboBoxZweitesStartTalent = new JComboBox<String>();
+		comboBoxZweitesStartTalent.setBounds(178, 350, 191, 20);
+		contentPane.add(comboBoxZweitesStartTalent);	
+		
+		JComboBox<String> comboBoxErsterZauber = new JComboBox<String>();
 		comboBoxErsterZauber.setBounds(175, 205, 191, 20);
 		contentPane.add(comboBoxErsterZauber);
 		
-		JComboBox comboBoxStartTalent = new JComboBox();
+		JComboBox<String> comboBoxStartTalent = new JComboBox<String>();
 		comboBoxStartTalent.setBounds(175, 280, 191, 20);
 		contentPane.add(comboBoxStartTalent);
-		JComboBox comboBoxKlasse = new JComboBox();
+		JComboBox<String> comboBoxKlasse = new JComboBox<String>();
 		
-		JComboBox comboBoxZauberwirkerTyp = new JComboBox();
+		JComboBox<String> comboBoxZauberwirkerTyp = new JComboBox<String>();
 		
 		comboBoxZauberwirkerTyp.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -140,28 +145,19 @@ public class Kerndaten {
 					
 					fuelleStartTalentSpaeher(comboBoxStartTalent);
 				}
-			}
-
-			
-
-			
+			}			
 		});
+		
 		comboBoxKlasse.addItem("Krieger");
 		comboBoxKlasse.addItem("Späher");
 		comboBoxKlasse.addItem("Zauberwirker");
 		comboBoxKlasse.setBounds(10, 127, 146, 20);
 		contentPane.add(comboBoxKlasse);
 
-		JLabel lblVolk = new JLabel("Volk");
-		lblVolk.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblVolk.setBounds(6, 159, 146, 34);
-		contentPane.add(lblVolk);
-
-		JComboBox comboBoxVolk = new JComboBox();
+		JComboBox<String> comboBoxVolk = new JComboBox<String>();
 		comboBoxVolk.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				comboBoxVolksBonus.removeAllItems();
-				comboBoxErsterZauber.removeAllItems();
 				comboBoxStartTalent.removeAllItems();
 				comboBoxZweitesStartTalent.removeAllItems();
 				fuellecomboBoxTalent(comboBoxStartTalent, comboBoxKlasse, comboBoxZauberwirkerTyp);
@@ -189,7 +185,7 @@ public class Kerndaten {
 		contentPane.add(comboBoxVolk);
 	}
 	
-	private void befuelleZauberSchwarzmagier(JComboBox comboBoxErsterZauber) {
+	private void befuelleZauberSchwarzmagier(JComboBox<String> comboBoxErsterZauber) {
 		comboBoxErsterZauber.addItem("Feuerstrahl");
 		comboBoxErsterZauber.addItem("Magie entdecken");
 		comboBoxErsterZauber.addItem("Magie identifizieren");
@@ -199,7 +195,7 @@ public class Kerndaten {
 		comboBoxErsterZauber.addItem("Zaubertrick");
 	}
 
-	private void befuelleZauberZauberer(JComboBox comboBoxErsterZauber) {
+	private void befuelleZauberZauberer(JComboBox<String> comboBoxErsterZauber) {
 		comboBoxErsterZauber.addItem("Duftnote");
 		comboBoxErsterZauber.addItem("Feuerstrahl");
 		comboBoxErsterZauber.addItem("Licht");
@@ -211,7 +207,7 @@ public class Kerndaten {
 		comboBoxErsterZauber.addItem("Zaubertrick");
 	}
 
-	private void befuelleZauberHeiler(JComboBox comboBoxErsterZauber) {
+	private void befuelleZauberHeiler(JComboBox<String> comboBoxErsterZauber) {
 		comboBoxErsterZauber.addItem("Blenden");
 		comboBoxErsterZauber.addItem("Giftschutz");
 		comboBoxErsterZauber.addItem("Heilbeeren");
@@ -227,24 +223,24 @@ public class Kerndaten {
 		comboBoxErsterZauber.addItem("Wasser weihen");
 	}
 	
-	private void fuelleStartTalentSchwarzmagier(JComboBox comboBoxStartTalent) {
+	private void fuelleStartTalentSchwarzmagier(JComboBox<String> comboBoxStartTalent) {
 		comboBoxStartTalent.addItem("Feuermagier");
 	}
 
-	private void fuelleStartTalentHeiler(JComboBox comboBoxStartTalent) {
+	private void fuelleStartTalentHeiler(JComboBox<String> comboBoxStartTalent) {
 		comboBoxStartTalent.addItem("Fürsorger");
 		comboBoxStartTalent.addItem("Manipulator");
 		comboBoxStartTalent.addItem("Rüstzauberer");
 	}
 
-	private void fuelleStartTalentZauberwirker(JComboBox comboBoxStartTalent) {
+	private void fuelleStartTalentZauberwirker(JComboBox<String> comboBoxStartTalent) {
 		comboBoxStartTalent.addItem("Alchemie");
 		comboBoxStartTalent.addItem("Runenkunde");
 		comboBoxStartTalent.addItem("Umdenken");
 		comboBoxStartTalent.addItem("Wechsler");
 	}
 	
-	private void fuelleStartTalentSpaeher(JComboBox comboBoxStartTalent) {
+	private void fuelleStartTalentSpaeher(JComboBox<String> comboBoxStartTalent) {
 		comboBoxStartTalent.addItem("Akrobat");
 		comboBoxStartTalent.addItem("Diebeskunst");
 		comboBoxStartTalent.addItem("Flink");
@@ -253,7 +249,7 @@ public class Kerndaten {
 		comboBoxStartTalent.addItem("Schütze");
 	}
 
-	private void fuelleStartTalentKrieger(JComboBox comboBoxStartTalent) {
+	private void fuelleStartTalentKrieger(JComboBox<String> comboBoxStartTalent) {
 		comboBoxStartTalent.addItem("Blocker");
 		comboBoxStartTalent.addItem("Kämpfer");
 		comboBoxStartTalent.addItem("Parade");
@@ -261,25 +257,25 @@ public class Kerndaten {
 		comboBoxStartTalent.addItem("Zwei Waffen");
 	}
 	
-	private void fuelleVolksBonusZwerg(JComboBox comboBoxVolksBonus) {
+	private void fuelleVolksBonusZwerg(JComboBox<String> comboBoxVolksBonus) {
 		comboBoxVolksBonus.addItem("Stärke");
 		comboBoxVolksBonus.addItem("Härte");
 		comboBoxVolksBonus.addItem("Geschick");
 	}
 
-	private void fuelleVoksBonusMensch(JComboBox comboBoxVolksBonus) {
+	private void fuelleVoksBonusMensch(JComboBox<String> comboBoxVolksBonus) {
 		comboBoxVolksBonus.addItem("Stärke");
 		comboBoxVolksBonus.addItem("Härte");
 		comboBoxVolksBonus.addItem("Verstand");
 	}
 
-	private void fuelleVolksBonusElf(JComboBox comboBoxVolksBonus) {
+	private void fuelleVolksBonusElf(JComboBox<String> comboBoxVolksBonus) {
 		comboBoxVolksBonus.addItem("Bewegung");
 		comboBoxVolksBonus.addItem("Geschick");
 		comboBoxVolksBonus.addItem("Aura");
 	}
 	
-	private void fuellecomboBoxTalent(JComboBox comboBoxStartTalent, JComboBox comboBoxKlasse, JComboBox comboBoxZauberwirkerTyp) {
+	private void fuellecomboBoxTalent(JComboBox<String> comboBoxStartTalent, JComboBox<String> comboBoxKlasse, JComboBox<String> comboBoxZauberwirkerTyp) {
 		comboBoxStartTalent.addItem("Ausweichen");
 		comboBoxStartTalent.addItem("Bildung");
 		comboBoxStartTalent.addItem("Charmant");
