@@ -1,4 +1,7 @@
+import java.awt.Color;
+
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CharakterWerte {
@@ -15,13 +18,35 @@ public class CharakterWerte {
 	private int schiessen;
 	private int zaubern;
 	private int zielzauber;
+	private JLabel lblZuVieleAttributsPunkte;
+	private JLabel lblZuVieleEigenschaftsPunkte;
 	
+	public JLabel getLblZuVieleAttributsPunkte() {
+		return lblZuVieleAttributsPunkte;
+	}
+	
+	public JLabel lblZuVieleEigenschaftsPunkte() {
+		return lblZuVieleEigenschaftsPunkte;
+	}
 
 	public CharakterWerte(JPanel contentPane) {
+		lblZuVieleAttributsPunkte = new JLabel("<html>Sie haben zu viele<br>Attributspunkte ausgegeben!</html>");
+		lblZuVieleAttributsPunkte.setForeground(Color.RED);
+		lblZuVieleAttributsPunkte.setBounds(784, 499, 132, 48);
+		lblZuVieleAttributsPunkte.setVisible(false);
+		contentPane.add(lblZuVieleAttributsPunkte);
+		
+		lblZuVieleEigenschaftsPunkte = new JLabel("<html>Sie haben zu viele<br>Eigenschaftspunkte ausgegeben!</html>");
+		lblZuVieleEigenschaftsPunkte.setForeground(Color.RED);
+		lblZuVieleEigenschaftsPunkte.setBounds(784, 551, 132, 48);
+		lblZuVieleEigenschaftsPunkte.setVisible(false);
+		contentPane.add(lblZuVieleEigenschaftsPunkte);
 
 		kampfWerteFeld = new KampfWerteFeld(contentPane);	
 		attributsFeld = new AttributsFeld(contentPane, this, btnSpeichern);
 		eigenschaftsFeld = new EigenschaftsFeld(contentPane, this, btnSpeichern);
+		
+		
 		
 	}
 

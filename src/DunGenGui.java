@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Color;
 
 public class DunGenGui extends JFrame {
 
@@ -41,6 +43,5 @@ public class DunGenGui extends JFrame {
 		KerndatenFeld kerndatenFeld = new KerndatenFeld(contentPane);
 		CharakterWerte charakterWerte = new CharakterWerte(contentPane);
 		AusruestungsBoxen ausruestungsBoxen = new AusruestungsBoxen(contentPane);
-	
 	}		
 }

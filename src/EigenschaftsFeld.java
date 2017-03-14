@@ -206,9 +206,11 @@ public class EigenschaftsFeld {
 		if (eigenschaftsPunkte < 0) {
 			btnSpeichern.setEnabled(false);
 			lblEigenschaftspunkteUebrig.setForeground(Color.red);
+			charakterWerte.lblZuVieleEigenschaftsPunkte().setVisible(true);
 		} else {
 			btnSpeichern.setEnabled(true);
 			lblEigenschaftspunkteUebrig.setForeground(Color.black);
+			charakterWerte.lblZuVieleEigenschaftsPunkte().setVisible(false);
 		}
 	}
 

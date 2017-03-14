@@ -113,10 +113,12 @@ JSpinner koerperSpinner = new JSpinner(aModelKoerper);
 	private void pruefeUebrigeAttributsPunkte() {
 		if (attributsPunkte < 0) {
 			btnSpeichern.setEnabled(false);
+			charakterWerte.getLblZuVieleAttributsPunkte().setVisible(true);
 			lblAttributsPunkteUebrig.setForeground(Color.red);
 		} else {
 			btnSpeichern.setEnabled(true);
 			lblAttributsPunkteUebrig.setForeground(Color.black);
+			charakterWerte.getLblZuVieleAttributsPunkte().setVisible(false);
 		}
 	}
 	
