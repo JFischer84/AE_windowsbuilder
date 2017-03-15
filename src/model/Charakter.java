@@ -10,7 +10,7 @@ public class Charakter {
 	private int geist;
 	private int staerke;
 	private int haerte;
-	private double bewegung;
+	private int bewegung;
 	private double laufen;
 	private int geschick;
 	private int verstand;
@@ -25,7 +25,6 @@ public class Charakter {
 	private String ersterTalentpunkt;
 	private String zweiterTalentpunkt;
 
-	
 	public String getName() {
 		return name;
 	}
@@ -80,10 +79,10 @@ public class Charakter {
 	public void setHaerte(int haerte) {
 		this.haerte = haerte;
 	}
-	public double getBewegung() {
+	public int getBewegung() {
 		return bewegung;
 	}
-	public void setBewegung(double bewegung) {
+	public void setBewegung(int bewegung) {
 		this.bewegung = bewegung;
 	}
 	

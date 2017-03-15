@@ -11,7 +11,7 @@ class CharakterWriter {
 	private CharakterWriter() {}
 	
 	static void writeCharakter(Charakter charakter) throws IOException {
-		FileWriter fw = new FileWriter("charakter.txt");
+		FileWriter fw = new FileWriter(charakter.getName()+".txt");
 		BufferedWriter bw = new BufferedWriter(fw);
 		
 		bw.write("Name: " + charakter.getName() + "      " + "Volk: " + charakter.getVolk().getVolksName() + "      " + "Klasse: " + charakter.getCharakterKlasse().getKlassenName());

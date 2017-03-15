@@ -15,12 +15,12 @@ class CharakterMapper {
 		charakter.setGeist(charakterWerte.getAttributsFeld().getGeist());
 		charakter.setKoerper(charakterWerte.getAttributsFeld().getKoerper());
 		//Eigenschaften
-		charakter.setStaerke(charakterWerte.getEigenschaftsFeld().getStaerke());
-		charakter.setHaerte(charakterWerte.getEigenschaftsFeld().getHaerte());
-		charakter.setBewegung(charakterWerte.getEigenschaftsFeld().getBewegung());
-		charakter.setGeschick(charakterWerte.getEigenschaftsFeld().getGeschick());
-		charakter.setVerstand(charakterWerte.getEigenschaftsFeld().getVerstand());
-		charakter.setAura(charakterWerte.getEigenschaftsFeld().getAura());
+		charakter.setStaerke(charakterWerte.getEigenschaftsFeld().getStaerke() + charakterWerte.getEigenschaftsFeld().getStaerkeBonus());
+		charakter.setHaerte(charakterWerte.getEigenschaftsFeld().getHaerte() + charakterWerte.getEigenschaftsFeld().getHaerteBonus());
+		charakter.setBewegung(charakterWerte.getEigenschaftsFeld().getBewegung() + charakterWerte.getEigenschaftsFeld().getBewegungBonus());
+		charakter.setGeschick(charakterWerte.getEigenschaftsFeld().getGeschick() + charakterWerte.getEigenschaftsFeld().getGeschickBonus());
+		charakter.setVerstand(charakterWerte.getEigenschaftsFeld().getVerstand() + charakterWerte.getEigenschaftsFeld().getVerstandBonus());
+		charakter.setAura(charakterWerte.getEigenschaftsFeld().getAura() + charakterWerte.getEigenschaftsFeld().getAuraBonus());
 		//Kampfwerte
 		charakter.setLebenskraft(charakterWerte.getLebenskraft());
 		charakter.setSchlagen(charakterWerte.getSchlagen());

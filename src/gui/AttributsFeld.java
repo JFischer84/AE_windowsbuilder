@@ -1,6 +1,7 @@
 package gui;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.ParseException;
 
 import javax.imageio.ImageTypeSpecifier;
 import javax.swing.JButton;
@@ -16,9 +17,9 @@ public class AttributsFeld {
 	
 	private JLabel lblAttributsPunkteUebrig = new JLabel("");
 	private int attributsPunkte = 20;
-	private SpinnerModel aModelAgilitaet = new SpinnerNumberModel(0, 0, 8, 1);
-	private SpinnerModel aModelGeist = new SpinnerNumberModel(0, 0, 8, 1);
-	private SpinnerModel aModelKoerper = new SpinnerNumberModel(0, 0, 8, 1);
+	private SpinnerModel modelAgilitaet = new SpinnerNumberModel(0, 0, 8, 1);
+	private SpinnerModel modelGeist = new SpinnerNumberModel(0, 0, 8, 1);
+	private SpinnerModel modelKoerper = new SpinnerNumberModel(0, 0, 8, 1);
 	private static final int ATTRIBUTE_MAX = 20;
 	private CharakterWerte charakterWerte;
 	private JButton btnSpeichern;
@@ -66,12 +67,17 @@ public class AttributsFeld {
 		lblAttributsPunkteUebrig.setBounds(619, 11, 44, 34);
 		contentPane.add(lblAttributsPunkteUebrig);
 
-		JSpinner agilitaetSpinner = new JSpinner(aModelAgilitaet);
+		JSpinner agilitaetSpinner = new JSpinner(modelAgilitaet);
 		agilitaetSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				try {
+					agilitaetSpinner.commitEdit();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				agilitaet = Integer.parseInt(agilitaetSpinner.getValue().toString());
 				attributsPunkte = berechneVerbleibendeAttributspunkte();
 				lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
-				agilitaet = (int)aModelAgilitaet.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeAttributsPunkte();
 			}
@@ -79,37 +85,41 @@ public class AttributsFeld {
 		agilitaetSpinner.setBounds(600, 87, 44, 20);
 		contentPane.add(agilitaetSpinner);
 
-		JSpinner geistSpinner = new JSpinner(aModelGeist);
+		JSpinner geistSpinner = new JSpinner(modelGeist);
 		geistSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					geistSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				geist = Integer.parseInt(geistSpinner.getValue().toString());
 				attributsPunkte = berechneVerbleibendeAttributspunkte();
 				lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
-				geist = (int)aModelAgilitaet.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeAttributsPunkte();
 			}
 		});
+		
 		geistSpinner.setBounds(600, 126, 44, 20);
 		contentPane.add(geistSpinner);
-		
-		JSpinner koerperSpinner = new JSpinner(aModelKoerper);
+		JSpinner koerperSpinner = new JSpinner(modelKoerper);
 		koerperSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				try {
+					koerperSpinner.commitEdit();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				koerper = Integer.parseInt(koerperSpinner.getValue().toString());
 				attributsPunkte = berechneVerbleibendeAttributspunkte();
 				lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
-				koerper = (int)aModelKoerper.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeAttributsPunkte();
 			}
-
-			
 		});
 		koerperSpinner.setBounds(600, 48, 44, 20);
 		contentPane.add(koerperSpinner);
-
-
-		
-
 		lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
 	}
 	
@@ -126,7 +136,7 @@ public class AttributsFeld {
 	}
 	
 	private int berechneVerbleibendeAttributspunkte() {
-		return ATTRIBUTE_MAX - ((int)aModelKoerper.getValue() + (int)aModelAgilitaet.getValue() + (int)aModelGeist.getValue());
+		return ATTRIBUTE_MAX - (koerper + agilitaet + geist);
 	}
 
 }

@@ -1,6 +1,7 @@
 package gui;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,19 +16,67 @@ import javax.swing.event.ChangeListener;
 
 public class EigenschaftsFeld {
 	
-	private SpinnerModel eModelStaerke = new SpinnerNumberModel(0, 0, 4, 1);
-	private SpinnerModel eModelHaerte = new SpinnerNumberModel(0, 0, 4, 1);
-	private SpinnerModel eModelBewegung = new SpinnerNumberModel(0, 0, 4, 1);
-	private SpinnerModel eModelGeschick = new SpinnerNumberModel(0, 0, 4, 1);
-	private SpinnerModel eModelVerstand = new SpinnerNumberModel(0, 0, 4, 1);
-	private SpinnerModel eModelAura = new SpinnerNumberModel(0, 0, 4, 1);
+	private SpinnerModel modelStaerke = new SpinnerNumberModel(0, 0, 4, 1);
+	private SpinnerModel modelHaerte = new SpinnerNumberModel(0, 0, 4, 1);
+	private SpinnerModel modelBewegung = new SpinnerNumberModel(0, 0, 4, 1);
+	private SpinnerModel modelGeschick = new SpinnerNumberModel(0, 0, 4, 1);
+	private SpinnerModel modelVerstand = new SpinnerNumberModel(0, 0, 4, 1);
+	private SpinnerModel modelAura = new SpinnerNumberModel(0, 0, 4, 1);
+	private JLabel lblEigenschaftspunkteUebrig = new JLabel("");
+	private JButton btnSpeichern;
+	private CharakterWerte charakterWerte;
+	private int eigenschaftsPunkte = 8;
+	private static final int EIGENSCHAFTEN_MAX = 8;
 	private int staerke;
 	private int haerte;
-	private double bewegung;
+	private int bewegung;
 	private int geschick;
 	private int verstand;
 	private int aura;
+	private int staerkeBonus;
+	private int haerteBonus;
+	private int bewegungBonus;
+	private int geschickBonus;
+	private int verstandBonus;
+	private int auraBonus;
 	
+	
+	public int getStaerkeBonus() {
+		return staerkeBonus;
+	}
+	public void setStaerkeBonus(int staerkeBonus) {
+		this.staerkeBonus = staerkeBonus;
+	}
+	public int getHaerteBonus() {
+		return haerteBonus;
+	}
+	public void setHaerteBonus(int haerteBonus) {
+		this.haerteBonus = haerteBonus;
+	}
+	public int getBewegungBonus() {
+		return bewegungBonus;
+	}
+	public void setBewegungBonus(int bewegungBonus) {
+		this.bewegungBonus = bewegungBonus;
+	}
+	public int getGeschickBonus() {
+		return geschickBonus;
+	}
+	public void setGeschickBonus(int geschickBonus) {
+		this.geschickBonus = geschickBonus;
+	}
+	public int getVerstandBonus() {
+		return verstandBonus;
+	}
+	public void setVerstandBonus(int verstandBonus) {
+		this.verstandBonus = verstandBonus;
+	}
+	public int getAuraBonus() {
+		return auraBonus;
+	}
+	public void setAuraBonus(int auraBonus) {
+		this.auraBonus = auraBonus;
+	}
 	public int getStaerke() {
 		return staerke;
 	}
@@ -40,10 +89,10 @@ public class EigenschaftsFeld {
 	public void setHaerte(int haerte) {
 		this.haerte = haerte;
 	}
-	public double getBewegung() {
+	public int getBewegung() {
 		return bewegung;
 	}
-	public void setBewegung(double bewegung) {
+	public void setBewegung(int bewegung) {
 		this.bewegung = bewegung;
 	}
 	public int getGeschick() {
@@ -64,15 +113,6 @@ public class EigenschaftsFeld {
 	public void setAura(int aura) {
 		this.aura = aura;
 	}
-
-	private JLabel lblEigenschaftspunkteUebrig = new JLabel("");
-	private JButton btnSpeichern;
-	private CharakterWerte charakterWerte;
-	
-	private int eigenschaftsPunkte = 8;
-
-	private static final int EIGENSCHAFTEN_MAX = 8;
-	
 
 	public EigenschaftsFeld(JPanel contentPane, CharakterWerte charakterWerte, JButton btnSpeichern) {
 		this.btnSpeichern = btnSpeichern;
@@ -126,10 +166,6 @@ public class EigenschaftsFeld {
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setBounds(656, 15, 18, 178);
 		contentPane.add(separator);
-		
-		
-
-		
 
 		
 		lblEigenschaftspunkteUebrig.setFont(new Font("Tahoma", Font.BOLD, 9));
@@ -139,27 +175,35 @@ public class EigenschaftsFeld {
 		lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
 
 
-		JSpinner staerkeSpinner = new JSpinner(eModelStaerke);
+		JSpinner staerkeSpinner = new JSpinner(modelStaerke);
 		staerkeSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					staerkeSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				staerke = Integer.parseInt(staerkeSpinner.getValue().toString());
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-				staerke = (int)eModelStaerke.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
-
-			
 		});
 		staerkeSpinner.setBounds(756, 48, 44, 20);
 		contentPane.add(staerkeSpinner);
 
-		JSpinner haerteSpinner = new JSpinner(eModelHaerte);
+		JSpinner haerteSpinner = new JSpinner(modelHaerte);
 		haerteSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					haerteSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				haerte = Integer.parseInt(haerteSpinner.getValue().toString());
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-				haerte = (int)eModelHaerte.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -170,12 +214,17 @@ public class EigenschaftsFeld {
 		
 
 
-		JSpinner bewegungSpinner = new JSpinner(eModelBewegung);
+		JSpinner bewegungSpinner = new JSpinner(modelBewegung);
 		bewegungSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					bewegungSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				bewegung = Integer.parseInt(bewegungSpinner.getValue().toString());
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-				bewegung = (double)eModelBewegung.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -183,12 +232,17 @@ public class EigenschaftsFeld {
 		bewegungSpinner.setBounds(756, 87, 44, 20);
 		contentPane.add(bewegungSpinner);
 
-		JSpinner geschickSpinner = new JSpinner(eModelGeschick);
+		JSpinner geschickSpinner = new JSpinner(modelGeschick);
 		geschickSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					geschickSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				geschick = Integer.parseInt(geschickSpinner.getValue().toString());
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-				geschick = (int)eModelGeschick.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -198,12 +252,17 @@ public class EigenschaftsFeld {
 
 		
 
-		JSpinner verstandSpinner = new JSpinner(eModelVerstand);
+		JSpinner verstandSpinner = new JSpinner(modelVerstand);
 		verstandSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					verstandSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				verstand = Integer.parseInt(verstandSpinner.getValue().toString());
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-				verstand = (int)eModelVerstand.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -211,12 +270,17 @@ public class EigenschaftsFeld {
 		verstandSpinner.setBounds(756, 126, 44, 20);
 		contentPane.add(verstandSpinner);
 
-		JSpinner auraSpinner = new JSpinner(eModelAura);
+		JSpinner auraSpinner = new JSpinner(modelAura);
 		auraSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				try {
+					auraSpinner.commitEdit();
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				aura = Integer.parseInt(auraSpinner.getValue().toString());
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-				aura = (int)eModelAura.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -225,8 +289,7 @@ public class EigenschaftsFeld {
 		contentPane.add(auraSpinner);	
 	}
 	private int berechneVerbleibendeEigenschaftspunkte() {
-		return EIGENSCHAFTEN_MAX - ((int)eModelStaerke.getValue() + (int)eModelHaerte.getValue() +
-				(int)eModelAura.getValue() + (int)eModelVerstand.getValue() + (int)eModelGeschick.getValue() + (int)eModelBewegung.getValue());
+		return EIGENSCHAFTEN_MAX - (staerke + haerte + aura + verstand + geschick + bewegung);
 	}
 	
 	private void pruefeUebrigeEigenschaftsPunkte() {

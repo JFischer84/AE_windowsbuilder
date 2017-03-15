@@ -95,14 +95,14 @@ public class CharakterWerte {
 
 	//TODO
 	public void berechneKampfwerte() {
-		lebenskraft = attributsFeld.getKoerper() + eigenschaftsFeld.getHaerte() + 10;
-		abwehr = attributsFeld.getKoerper() + eigenschaftsFeld.getHaerte() + 0;// PA muss raufgerechnet werden bei Auswahl von Rüstung
-		initiative = (int) (attributsFeld.getAgilitaet() + eigenschaftsFeld.getBewegung());
+		lebenskraft = attributsFeld.getKoerper() + eigenschaftsFeld.getHaerte() + eigenschaftsFeld.getHaerteBonus() + 10;
+		abwehr = attributsFeld.getKoerper() + eigenschaftsFeld.getHaerte() + eigenschaftsFeld.getHaerteBonus() + 0;// PA muss raufgerechnet werden bei Auswahl von Rüstung
+		initiative = (int) (attributsFeld.getAgilitaet() + eigenschaftsFeld.getBewegung() + eigenschaftsFeld.getBewegungBonus());
 		laufen = Double.valueOf(attributsFeld.getAgilitaet()) / 2 + 1;
-		schlagen = attributsFeld.getKoerper() + eigenschaftsFeld.getStaerke() + 0;// WB muss raufgerechnet werden bei Auswahl von Waffe
-		schiessen = attributsFeld.getAgilitaet() + eigenschaftsFeld.getGeschick() + 0;// WB muss raufgerechnet werden bei Auswahl von Waffe
-		zaubern = attributsFeld.getGeist() + eigenschaftsFeld.getAura() - 0;// PA muss abgezogen werden bei Auswahl von Rüstung
-		zielzauber = attributsFeld.getGeist() + eigenschaftsFeld.getGeschick() - 0; // PA muss abgezogen werden bei Auswahl von Rüstung
+		schlagen = attributsFeld.getKoerper() + eigenschaftsFeld.getStaerke() + eigenschaftsFeld.getStaerkeBonus() + 0;// WB muss raufgerechnet werden bei Auswahl von Waffe
+		schiessen = attributsFeld.getAgilitaet() + eigenschaftsFeld.getGeschick() + eigenschaftsFeld.getGeschickBonus() + 0;// WB muss raufgerechnet werden bei Auswahl von Waffe
+		zaubern = attributsFeld.getGeist() + eigenschaftsFeld.getAura() + eigenschaftsFeld.getAuraBonus() - 0;// PA muss abgezogen werden bei Auswahl von Rüstung
+		zielzauber = attributsFeld.getGeist() + eigenschaftsFeld.getGeschick() + eigenschaftsFeld.getGeschickBonus() - 0; // PA muss abgezogen werden bei Auswahl von Rüstung
 		
 		kampfWerteFeld.getLblLebenskraftPunkte().setText(Integer.toString(lebenskraft));
 		kampfWerteFeld.getLblAbwehrPunkte().setText(Integer.toString(abwehr));

@@ -405,22 +405,22 @@ public class KerndatenFeld {
 		if (comboBoxBonus.getSelectedItem() != null) {
 			switch (comboBoxBonus.getSelectedItem().toString()) {
 			case "Stärke": bonus = "Stärke";
-			charakterWerte.getEigenschaftsFeld().setStaerke(charakterWerte.getEigenschaftsFeld().getStaerke() + 1);
+			charakterWerte.getEigenschaftsFeld().setStaerkeBonus(charakterWerte.getEigenschaftsFeld().getStaerkeBonus() + 1);
 				break;
 			case "Härte": bonus = "Härte";
-			charakterWerte.getEigenschaftsFeld().setHaerte(charakterWerte.getEigenschaftsFeld().getHaerte() + 1);
+			charakterWerte.getEigenschaftsFeld().setHaerteBonus(charakterWerte.getEigenschaftsFeld().getHaerteBonus() + 1);
 				break;
 			case "Bewegung": bonus = "Bewegung";
-			charakterWerte.getEigenschaftsFeld().setBewegung(charakterWerte.getEigenschaftsFeld().getBewegung() + 1);
+			charakterWerte.getEigenschaftsFeld().setBewegungBonus(charakterWerte.getEigenschaftsFeld().getBewegungBonus() + 1);
 				break;
 			case "Geschick": bonus = "Geschick";
-			charakterWerte.getEigenschaftsFeld().setGeschick(charakterWerte.getEigenschaftsFeld().getGeschick() + 1);
+			charakterWerte.getEigenschaftsFeld().setGeschickBonus(charakterWerte.getEigenschaftsFeld().getGeschickBonus() + 1);
 				break;
 			case "Verstand": bonus = "Verstand";
-			charakterWerte.getEigenschaftsFeld().setVerstand(charakterWerte.getEigenschaftsFeld().getVerstand() + 1);
+			charakterWerte.getEigenschaftsFeld().setVerstandBonus(charakterWerte.getEigenschaftsFeld().getVerstandBonus() + 1);
 				break;
 			case "Aura": bonus = "Aura";
-			charakterWerte.getEigenschaftsFeld().setAura(charakterWerte.getEigenschaftsFeld().getAura() + 1);
+			charakterWerte.getEigenschaftsFeld().setAuraBonus(charakterWerte.getEigenschaftsFeld().getAuraBonus() + 1);
 				break;
 			default:
 				break;
@@ -432,22 +432,22 @@ public class KerndatenFeld {
 	private String entferneBonus(String bonus) {
 		switch (bonus) {
 		case "Stärke": bonus = "";
-			charakterWerte.getEigenschaftsFeld().setStaerke(charakterWerte.getEigenschaftsFeld().getStaerke() - 1);
+			charakterWerte.getEigenschaftsFeld().setStaerkeBonus(charakterWerte.getEigenschaftsFeld().getStaerkeBonus() - 1);
 			break;
 		case "Härte": bonus = "";
-		charakterWerte.getEigenschaftsFeld().setHaerte(charakterWerte.getEigenschaftsFeld().getHaerte() - 1);
+		charakterWerte.getEigenschaftsFeld().setHaerteBonus(charakterWerte.getEigenschaftsFeld().getHaerteBonus() - 1);
 			break;
 		case "Bewegung": bonus = "";
-		charakterWerte.getEigenschaftsFeld().setBewegung(charakterWerte.getEigenschaftsFeld().getBewegung() - 1);
+		charakterWerte.getEigenschaftsFeld().setBewegungBonus(charakterWerte.getEigenschaftsFeld().getBewegungBonus() - 1);
 			break;
 		case "Geschick": bonus = "";
-		charakterWerte.getEigenschaftsFeld().setGeschick(charakterWerte.getEigenschaftsFeld().getGeschick() - 1);
+		charakterWerte.getEigenschaftsFeld().setGeschickBonus(charakterWerte.getEigenschaftsFeld().getGeschickBonus() - 1);
 			break;
 		case "Verstand": bonus = "";
-		charakterWerte.getEigenschaftsFeld().setVerstand(charakterWerte.getEigenschaftsFeld().getVerstand() - 1);
+		charakterWerte.getEigenschaftsFeld().setVerstandBonus(charakterWerte.getEigenschaftsFeld().getVerstandBonus() - 1);
 			break;
 		case "Aura": bonus = "";
-		charakterWerte.getEigenschaftsFeld().setAura(charakterWerte.getEigenschaftsFeld().getAura() - 1);
+		charakterWerte.getEigenschaftsFeld().setAuraBonus(charakterWerte.getEigenschaftsFeld().getAuraBonus() - 1);
 			break;
 		default:
 			break;
