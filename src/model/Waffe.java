@@ -1,4 +1,4 @@
-
+package model;
 public class Waffe extends Ausruestung{
 	private int waffenbonus;
 	private String besonderes;

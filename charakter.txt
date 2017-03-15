@@ -1,0 +1,12 @@
+Name: Test      Volk: Mensch      Klasse: Zauberwirker
+Volksfähigkeiten: 1 Talentpunkt    Geschlecht: Männlich
+Attribute: 
+Körper: 8    Agilität: 8    Geist: 8
+Eigenschaften: 
+Stärke: 3    Bewegung: 1.0    Verstand: 1
+Härte: 4    Geschickt: 0    Aura: 0
+Kampfwerte: 
+Lebenskraft: 22    Abwehr: 12    Initiative: 9    Laufen: 5.0
+Schlagen: 11    Schießen: 8    Zaubern: 8    Zielzauber: 8
+Erster Talentpunkt: Ausweichen    Zweiter Talentpunkt: Alchemie
+Zauberwirkertyp: Zauberer    Startzauber: Duftnote

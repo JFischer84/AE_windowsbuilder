@@ -1,6 +1,8 @@
+package gui;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.imageio.ImageTypeSpecifier;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,20 +22,21 @@ public class AttributsFeld {
 	private static final int ATTRIBUTE_MAX = 20;
 	private CharakterWerte charakterWerte;
 	private JButton btnSpeichern;
+	private int agilitaet;
+	private int geist;
+	private int koerper;
 	
-	public SpinnerModel getaModelAgilitaet() {
-		return aModelAgilitaet;
+	public int getAgilitaet() {
+		return agilitaet;
 	}
 
-	public SpinnerModel getaModelGeist() {
-		return aModelGeist;
+	public int getGeist() {
+		return geist;
 	}
 
-	public SpinnerModel getaModelKoerper() {
-		return aModelKoerper;
+	public int getKoerper() {
+		return koerper;
 	}
-
-	
 
 	public AttributsFeld(JPanel contentPane, CharakterWerte charakterWerte, JButton btnSpeichern) {
 		this.charakterWerte = charakterWerte;
@@ -68,6 +71,7 @@ public class AttributsFeld {
 			public void stateChanged(ChangeEvent arg0) {
 				attributsPunkte = berechneVerbleibendeAttributspunkte();
 				lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
+				agilitaet = (int)aModelAgilitaet.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeAttributsPunkte();
 			}
@@ -80,6 +84,7 @@ public class AttributsFeld {
 			public void stateChanged(ChangeEvent e) {
 				attributsPunkte = berechneVerbleibendeAttributspunkte();
 				lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
+				geist = (int)aModelAgilitaet.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeAttributsPunkte();
 			}
@@ -87,14 +92,12 @@ public class AttributsFeld {
 		geistSpinner.setBounds(600, 126, 44, 20);
 		contentPane.add(geistSpinner);
 		
-JSpinner koerperSpinner = new JSpinner(aModelKoerper);
-	
-		
-		
+		JSpinner koerperSpinner = new JSpinner(aModelKoerper);
 		koerperSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				attributsPunkte = berechneVerbleibendeAttributspunkte();
 				lblAttributsPunkteUebrig.setText(Integer.toString(attributsPunkte));
+				koerper = (int)aModelKoerper.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeAttributsPunkte();
 			}

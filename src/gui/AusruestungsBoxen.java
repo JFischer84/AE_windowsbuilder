@@ -1,3 +1,4 @@
+package gui;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import model.Ausruestung;
+import model.Waffe;
 
 public class AusruestungsBoxen {
 	

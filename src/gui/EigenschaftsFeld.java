@@ -1,3 +1,4 @@
+package gui;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -15,16 +16,55 @@ import javax.swing.event.ChangeListener;
 public class EigenschaftsFeld {
 	
 	private SpinnerModel eModelStaerke = new SpinnerNumberModel(0, 0, 4, 1);
-	
-
 	private SpinnerModel eModelHaerte = new SpinnerNumberModel(0, 0, 4, 1);
-	
 	private SpinnerModel eModelBewegung = new SpinnerNumberModel(0, 0, 4, 1);
 	private SpinnerModel eModelGeschick = new SpinnerNumberModel(0, 0, 4, 1);
-	
 	private SpinnerModel eModelVerstand = new SpinnerNumberModel(0, 0, 4, 1);
 	private SpinnerModel eModelAura = new SpinnerNumberModel(0, 0, 4, 1);
+	private int staerke;
+	private int haerte;
+	private double bewegung;
+	private int geschick;
+	private int verstand;
+	private int aura;
 	
+	public int getStaerke() {
+		return staerke;
+	}
+	public void setStaerke(int staerke) {
+		this.staerke = staerke;
+	}
+	public int getHaerte() {
+		return haerte;
+	}
+	public void setHaerte(int haerte) {
+		this.haerte = haerte;
+	}
+	public double getBewegung() {
+		return bewegung;
+	}
+	public void setBewegung(double bewegung) {
+		this.bewegung = bewegung;
+	}
+	public int getGeschick() {
+		return geschick;
+	}
+	public void setGeschick(int geschick) {
+		this.geschick = geschick;
+	}
+	public int getVerstand() {
+		return verstand;
+	}
+	public void setVerstand(int verstand) {
+		this.verstand = verstand;
+	}
+	public int getAura() {
+		return aura;
+	}
+	public void setAura(int aura) {
+		this.aura = aura;
+	}
+
 	private JLabel lblEigenschaftspunkteUebrig = new JLabel("");
 	private JButton btnSpeichern;
 	private CharakterWerte charakterWerte;
@@ -33,24 +73,6 @@ public class EigenschaftsFeld {
 
 	private static final int EIGENSCHAFTEN_MAX = 8;
 	
-	public SpinnerModel geteModelStaerke() {
-		return eModelStaerke;
-	}
-	public SpinnerModel geteModelHaerte() {
-		return eModelHaerte;
-	}
-	public SpinnerModel geteModelBewegung() {
-		return eModelBewegung;
-	}
-	public SpinnerModel geteModelGeschick() {
-		return eModelGeschick;
-	}
-	public SpinnerModel geteModelVerstand() {
-		return eModelVerstand;
-	}
-	public SpinnerModel geteModelAura() {
-		return eModelAura;
-	}
 
 	public EigenschaftsFeld(JPanel contentPane, CharakterWerte charakterWerte, JButton btnSpeichern) {
 		this.btnSpeichern = btnSpeichern;
@@ -105,8 +127,7 @@ public class EigenschaftsFeld {
 		separator.setBounds(656, 15, 18, 178);
 		contentPane.add(separator);
 		
-		btnSpeichern.setBounds(795, 607, 117, 29);
-		contentPane.add(btnSpeichern);
+		
 
 		
 
@@ -123,6 +144,7 @@ public class EigenschaftsFeld {
 			public void stateChanged(ChangeEvent e) {
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
+				staerke = (int)eModelStaerke.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -137,6 +159,7 @@ public class EigenschaftsFeld {
 			public void stateChanged(ChangeEvent e) {
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
+				haerte = (int)eModelHaerte.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -152,6 +175,7 @@ public class EigenschaftsFeld {
 			public void stateChanged(ChangeEvent e) {
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
+				bewegung = (double)eModelBewegung.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -164,6 +188,7 @@ public class EigenschaftsFeld {
 			public void stateChanged(ChangeEvent e) {
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
+				geschick = (int)eModelGeschick.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -178,6 +203,7 @@ public class EigenschaftsFeld {
 			public void stateChanged(ChangeEvent e) {
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
+				verstand = (int)eModelVerstand.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}
@@ -190,6 +216,7 @@ public class EigenschaftsFeld {
 			public void stateChanged(ChangeEvent e) {
 				eigenschaftsPunkte = berechneVerbleibendeEigenschaftspunkte();
 				lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
+				aura = (int)eModelAura.getValue();
 				charakterWerte.berechneKampfwerte();
 				pruefeUebrigeEigenschaftsPunkte();
 			}

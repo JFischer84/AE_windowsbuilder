@@ -1,3 +1,4 @@
+package gui;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -7,8 +8,45 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class KerndatenFeld {
+	
+	private CharakterWerte charakterWerte;
+	private String gegebenerVolksBonus = "";
+	private String gegebenerKlassenBonus = "";
+	private String volk;
+	private String charakterKlasse;
+	private String zauberWirkerTyp;
+	private String ersterZauber;
+	private String StartTalent;
+	private String zweitesStarTtalent;
 
-	public KerndatenFeld(JPanel contentPane) {
+	public String getVolk() {
+		return volk;
+	}
+
+	public String getCharakterKlasse() {
+		return charakterKlasse;
+	}
+	
+
+	public String getZauberWirkerTyp() {
+		return zauberWirkerTyp;
+	}
+
+	public String getErsterZauber() {
+		return ersterZauber;
+	}
+
+	public String getStartTalent() {
+		return StartTalent;
+	}
+
+	public String getZweitesStarTtalent() {
+		return zweitesStarTtalent;
+	}
+
+	public KerndatenFeld(JPanel contentPane, CharakterWerte charakterWerte) {
+		this.charakterWerte = charakterWerte;
+		
 		
 		JLabel lblVolksfaehigkeiten = new JLabel("Volksfähigkeiten:");
 		lblVolksfaehigkeiten.setBounds(378, 206, 119, 16);
@@ -61,28 +99,67 @@ public class KerndatenFeld {
 		JComboBox<String> comboBoxVolksBonus = new JComboBox<String>();
 		comboBoxVolksBonus.setBounds(10, 280, 146, 20);
 		contentPane.add(comboBoxVolksBonus);
+		comboBoxVolksBonus.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				gegebenerVolksBonus  = entferneBonus(gegebenerVolksBonus);
+				gegebenerVolksBonus = setzeBonus(comboBoxVolksBonus, gegebenerVolksBonus);
+				charakterWerte.berechneKampfwerte();
+			}
+
+		
+		});
 		
 		JComboBox<String> comboBoxKlassenBonus = new JComboBox<String>();
 		comboBoxKlassenBonus.setBounds(10, 350, 146, 20);
 		contentPane.add(comboBoxKlassenBonus);
+		comboBoxKlassenBonus.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				gegebenerKlassenBonus  = entferneBonus(gegebenerKlassenBonus);
+				gegebenerKlassenBonus = setzeBonus(comboBoxKlassenBonus, gegebenerKlassenBonus);
+				charakterWerte.berechneKampfwerte();
+			}
+		});
 		
 		JComboBox<String> comboBoxZweitesStartTalent = new JComboBox<String>();
 		comboBoxZweitesStartTalent.setBounds(178, 350, 191, 20);
-		contentPane.add(comboBoxZweitesStartTalent);	
+		contentPane.add(comboBoxZweitesStartTalent);
+		comboBoxZweitesStartTalent.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e){
+				if (comboBoxZweitesStartTalent.getSelectedItem() != null) {
+					zweitesStarTtalent = comboBoxZweitesStartTalent.getSelectedItem().toString();
+				}
+			}
+		});
 		
 		JComboBox<String> comboBoxErsterZauber = new JComboBox<String>();
 		comboBoxErsterZauber.setBounds(175, 205, 191, 20);
 		contentPane.add(comboBoxErsterZauber);
+		comboBoxErsterZauber.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (comboBoxErsterZauber.getSelectedItem() != null) {
+					ersterZauber = comboBoxErsterZauber.getSelectedItem().toString();
+				}
+				
+			}
+		});
 		
 		JComboBox<String> comboBoxStartTalent = new JComboBox<String>();
 		comboBoxStartTalent.setBounds(175, 280, 191, 20);
 		contentPane.add(comboBoxStartTalent);
 		JComboBox<String> comboBoxKlasse = new JComboBox<String>();
+		comboBoxStartTalent.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e){
+				if (comboBoxStartTalent.getSelectedItem() != null) {
+					StartTalent = comboBoxStartTalent.getSelectedItem().toString();
+				}
+			}
+		});
 		
 		JComboBox<String> comboBoxZauberwirkerTyp = new JComboBox<String>();
 		
 		comboBoxZauberwirkerTyp.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				zauberWirkerTyp = comboBoxZauberwirkerTyp.getSelectedItem().toString();
 				comboBoxErsterZauber.removeAllItems();
 				comboBoxStartTalent.removeAllItems();
 				comboBoxZweitesStartTalent.removeAllItems();
@@ -106,6 +183,7 @@ public class KerndatenFeld {
 		
 		comboBoxKlasse.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				charakterKlasse = comboBoxKlasse.getSelectedItem().toString();
 				comboBoxStartTalent.removeAllItems();
 				comboBoxZweitesStartTalent.removeAllItems();
 				comboBoxKlassenBonus.removeAllItems();
@@ -157,6 +235,7 @@ public class KerndatenFeld {
 		JComboBox<String> comboBoxVolk = new JComboBox<String>();
 		comboBoxVolk.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
+				volk = comboBoxVolk.getSelectedItem().toString();
 				comboBoxVolksBonus.removeAllItems();
 				comboBoxStartTalent.removeAllItems();
 				comboBoxZweitesStartTalent.removeAllItems();
@@ -321,5 +400,58 @@ public class KerndatenFeld {
 		comboBoxStartTalent.addItem("Schütze");
 	}
 }
-
+	
+	private String setzeBonus(JComboBox<String> comboBoxBonus, String bonus) {
+		if (comboBoxBonus.getSelectedItem() != null) {
+			switch (comboBoxBonus.getSelectedItem().toString()) {
+			case "Stärke": bonus = "Stärke";
+			charakterWerte.getEigenschaftsFeld().setStaerke(charakterWerte.getEigenschaftsFeld().getStaerke() + 1);
+				break;
+			case "Härte": bonus = "Härte";
+			charakterWerte.getEigenschaftsFeld().setHaerte(charakterWerte.getEigenschaftsFeld().getHaerte() + 1);
+				break;
+			case "Bewegung": bonus = "Bewegung";
+			charakterWerte.getEigenschaftsFeld().setBewegung(charakterWerte.getEigenschaftsFeld().getBewegung() + 1);
+				break;
+			case "Geschick": bonus = "Geschick";
+			charakterWerte.getEigenschaftsFeld().setGeschick(charakterWerte.getEigenschaftsFeld().getGeschick() + 1);
+				break;
+			case "Verstand": bonus = "Verstand";
+			charakterWerte.getEigenschaftsFeld().setVerstand(charakterWerte.getEigenschaftsFeld().getVerstand() + 1);
+				break;
+			case "Aura": bonus = "Aura";
+			charakterWerte.getEigenschaftsFeld().setAura(charakterWerte.getEigenschaftsFeld().getAura() + 1);
+				break;
+			default:
+				break;
+			}
+		}
+		return bonus;		
+	}
+	
+	private String entferneBonus(String bonus) {
+		switch (bonus) {
+		case "Stärke": bonus = "";
+			charakterWerte.getEigenschaftsFeld().setStaerke(charakterWerte.getEigenschaftsFeld().getStaerke() - 1);
+			break;
+		case "Härte": bonus = "";
+		charakterWerte.getEigenschaftsFeld().setHaerte(charakterWerte.getEigenschaftsFeld().getHaerte() - 1);
+			break;
+		case "Bewegung": bonus = "";
+		charakterWerte.getEigenschaftsFeld().setBewegung(charakterWerte.getEigenschaftsFeld().getBewegung() - 1);
+			break;
+		case "Geschick": bonus = "";
+		charakterWerte.getEigenschaftsFeld().setGeschick(charakterWerte.getEigenschaftsFeld().getGeschick() - 1);
+			break;
+		case "Verstand": bonus = "";
+		charakterWerte.getEigenschaftsFeld().setVerstand(charakterWerte.getEigenschaftsFeld().getVerstand() - 1);
+			break;
+		case "Aura": bonus = "";
+		charakterWerte.getEigenschaftsFeld().setAura(charakterWerte.getEigenschaftsFeld().getAura() - 1);
+			break;
+		default:
+			break;
+		}	
+		return bonus;	
+	}
 }

@@ -1,12 +1,14 @@
+package gui;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 public class CharakterWerte {
 
-	private JButton btnSpeichern = new JButton("Speichern");
+	
 	private KampfWerteFeld kampfWerteFeld;
 	private AttributsFeld attributsFeld;
 	private EigenschaftsFeld eigenschaftsFeld;
@@ -20,7 +22,48 @@ public class CharakterWerte {
 	private int zielzauber;
 	private JLabel lblZuVieleAttributsPunkte;
 	private JLabel lblZuVieleEigenschaftsPunkte;
+	private JButton btnSpeichern;
 	
+	public int getLebenskraft() {
+		return lebenskraft;
+	}
+
+	public int getAbwehr() {
+		return abwehr;
+	}
+
+	public int getInitiative() {
+		return initiative;
+	}
+
+	public double getLaufen() {
+		return laufen;
+	}
+
+	public int getSchlagen() {
+		return schlagen;
+	}
+
+	public int getSchiessen() {
+		return schiessen;
+	}
+
+	public int getZaubern() {
+		return zaubern;
+	}
+
+	public int getZielzauber() {
+		return zielzauber;
+	}
+
+	public AttributsFeld getAttributsFeld() {
+		return attributsFeld;
+	}
+
+	public EigenschaftsFeld getEigenschaftsFeld() {
+		return eigenschaftsFeld;
+	}
+
 	public JLabel getLblZuVieleAttributsPunkte() {
 		return lblZuVieleAttributsPunkte;
 	}
@@ -29,7 +72,8 @@ public class CharakterWerte {
 		return lblZuVieleEigenschaftsPunkte;
 	}
 
-	public CharakterWerte(JPanel contentPane) {
+	public CharakterWerte(JPanel contentPane, JButton btnSpeichern) {
+		this.btnSpeichern = btnSpeichern;
 		lblZuVieleAttributsPunkte = new JLabel("<html>Sie haben zu viele<br>Attributspunkte ausgegeben!</html>");
 		lblZuVieleAttributsPunkte.setForeground(Color.RED);
 		lblZuVieleAttributsPunkte.setBounds(784, 499, 132, 48);
@@ -45,21 +89,20 @@ public class CharakterWerte {
 		kampfWerteFeld = new KampfWerteFeld(contentPane);	
 		attributsFeld = new AttributsFeld(contentPane, this, btnSpeichern);
 		eigenschaftsFeld = new EigenschaftsFeld(contentPane, this, btnSpeichern);
-		
-		
+
 		
 	}
 
 	//TODO
 	public void berechneKampfwerte() {
-		lebenskraft = (int)attributsFeld.getaModelKoerper().getValue() + (int)eigenschaftsFeld.geteModelHaerte().getValue() + 10;
-		abwehr = (int)attributsFeld.getaModelKoerper().getValue() + (int)eigenschaftsFeld.geteModelHaerte().getValue() + 0;// PA
-		initiative = (int)attributsFeld.getaModelAgilitaet().getValue() + (int)eigenschaftsFeld.geteModelBewegung().getValue();
-		laufen = Double.valueOf(attributsFeld.getaModelAgilitaet().getValue().toString()) / 2 + 1;
-		schlagen = (int)attributsFeld.getaModelKoerper().getValue() + (int)eigenschaftsFeld.geteModelStaerke().getValue() + 0;// WB
-		schiessen = (int)attributsFeld.getaModelAgilitaet().getValue() + (int)eigenschaftsFeld.geteModelGeschick().getValue() + 0;// WB
-		zaubern = (int)attributsFeld.getaModelGeist().getValue() + (int)eigenschaftsFeld.geteModelAura().getValue() - 0;// PA
-		zielzauber = (int)attributsFeld.getaModelGeist().getValue() + (int)eigenschaftsFeld.geteModelGeschick().getValue() - 0; // PA
+		lebenskraft = attributsFeld.getKoerper() + eigenschaftsFeld.getHaerte() + 10;
+		abwehr = attributsFeld.getKoerper() + eigenschaftsFeld.getHaerte() + 0;// PA muss raufgerechnet werden bei Auswahl von Rüstung
+		initiative = (int) (attributsFeld.getAgilitaet() + eigenschaftsFeld.getBewegung());
+		laufen = Double.valueOf(attributsFeld.getAgilitaet()) / 2 + 1;
+		schlagen = attributsFeld.getKoerper() + eigenschaftsFeld.getStaerke() + 0;// WB muss raufgerechnet werden bei Auswahl von Waffe
+		schiessen = attributsFeld.getAgilitaet() + eigenschaftsFeld.getGeschick() + 0;// WB muss raufgerechnet werden bei Auswahl von Waffe
+		zaubern = attributsFeld.getGeist() + eigenschaftsFeld.getAura() - 0;// PA muss abgezogen werden bei Auswahl von Rüstung
+		zielzauber = attributsFeld.getGeist() + eigenschaftsFeld.getGeschick() - 0; // PA muss abgezogen werden bei Auswahl von Rüstung
 		
 		kampfWerteFeld.getLblLebenskraftPunkte().setText(Integer.toString(lebenskraft));
 		kampfWerteFeld.getLblAbwehrPunkte().setText(Integer.toString(abwehr));
