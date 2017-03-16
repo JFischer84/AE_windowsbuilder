@@ -7,6 +7,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * Diese Klasse verwaltet die Kerndaten-Komponente.
+ *
+ */
+//TODO außeinanderfriemeln 
 public class KerndatenFeld {
 	
 	private CharakterWerte charakterWerte;

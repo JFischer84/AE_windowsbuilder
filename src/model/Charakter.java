@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * 
+ * Diese Klasse stellt das Model für den Charakter.
+ *
+ */
 public class Charakter {
 	private String name;
 	private String geschlecht;

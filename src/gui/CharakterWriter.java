@@ -7,6 +7,11 @@ import java.io.IOException;
 import model.Charakter;
 import model.Zauberwirker;
 
+/**
+ * 
+ * Diese Klasse schreibt die Daten aus dem Charakter-Objekt in eine Textdatei.
+ *
+ */
 class CharakterWriter {
 	private CharakterWriter() {}
 	

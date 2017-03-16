@@ -14,6 +14,13 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * Diese Klasse stellt den Root-Container für die GUI-Klassen dar.
+ * Zusätzlich wird hier die Exception für das Speichern behandelt und 
+ * der Speichern-Button verwaltet.
+ *
+ */
 public class DunGenGui extends JFrame {
 
 	private JPanel contentPane;
@@ -54,7 +61,7 @@ public class DunGenGui extends JFrame {
 		Kopfzeile kopfzeile = new Kopfzeile(contentPane);
 		charakterWerte = new CharakterWerte(contentPane, btnSpeichern);
 		KerndatenFeld kerndatenFeld = new KerndatenFeld(contentPane, charakterWerte);
-		AusruestungsBoxen ausruestungsBoxen = new AusruestungsBoxen(contentPane);
+		AusruestungsFeld ausruestungsBoxen = new AusruestungsFeld(contentPane);
 		
 		
 		JLabel lblFehlerLabel = new JLabel("<html>Beim Speichern<br> ist ein fehler aufgetreten!</html>");
@@ -68,7 +75,6 @@ public class DunGenGui extends JFrame {
 		lblSpeichern.setBounds(795, 542, 120, 64);
 		lblSpeichern.setVisible(false);
 		contentPane.add(lblSpeichern);
-		
 		
 		
 		btnSpeichern.addActionListener(new ActionListener() {

@@ -3,6 +3,11 @@ package gui;
 import model.Charakter;
 import model.Zauberwirker;
 
+/**
+ * 
+ * Diese Klasse mappt die Charakterwerte aus der GUI auf das Charakter-Objekt.
+ *
+ */
 class CharakterMapper {
 	private CharakterMapper() {}
 	

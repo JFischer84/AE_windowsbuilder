@@ -12,7 +12,10 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+/**
+ * Diese Klasse bildet die Komponente ab, welche sich um die Attribute kümmert.
+ *
+ */
 public class AttributsFeld {
 	
 	private static final int ATTRIBUTE_MAX = 20;

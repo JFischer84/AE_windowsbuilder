@@ -7,6 +7,13 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * Dies ist die Komponente für die Kampfwerte. Die Berechnung findet in der 
+ * übergeordneten Komponente statt, da für diese auf die Attribute und die 
+ * Eigenschaften zugegriffen werden muss.
+ *
+ */
 public class KampfWerteFeld {
 	private JLabel lblLebenskraftPunkte = new JLabel("0");
 	private JLabel lblSchlagenPunkte = new JLabel("0");

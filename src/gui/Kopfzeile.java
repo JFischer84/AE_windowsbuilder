@@ -8,7 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
-
+/**
+ * 
+ * Dies ist die Kopfzeilenkomponente.
+ *
+ */
 public class Kopfzeile {
 	
 	private String geschlecht;

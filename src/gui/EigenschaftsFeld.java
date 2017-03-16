@@ -14,6 +14,11 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * 
+ * Dies ist die Eigenschafts-Komponente.
+ *
+ */
 public class EigenschaftsFeld {
 	
 	private SpinnerModel modelStaerke = new SpinnerNumberModel(0, 0, 4, 1);

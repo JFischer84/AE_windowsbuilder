@@ -1,13 +1,18 @@
 package gui;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+/**
+ * 
+ *  Diese Klasse dient als Container für die einzelnen 
+ *  Charakterwerte-Felder und berechnet die Kampfwerte aus den
+ *  Attributen und Eigenschaften.
+ *
+ */
 public class CharakterWerte {
 
 	
@@ -24,8 +29,6 @@ public class CharakterWerte {
 	private int zielzauber;
 	private JLabel lblZuVieleAttributsPunkte;
 	private JLabel lblZuVieleEigenschaftsPunkte;
-	private JButton btnSpeichern;
-	
 	public int getLebenskraft() {
 		return lebenskraft;
 	}
@@ -75,7 +78,6 @@ public class CharakterWerte {
 	}
 
 	public CharakterWerte(JPanel contentPane, JButton btnSpeichern) {
-		this.btnSpeichern = btnSpeichern;
 		lblZuVieleAttributsPunkte = new JLabel("<html>Sie haben zu viele<br>Attributspunkte ausgegeben!</html>");
 		lblZuVieleAttributsPunkte.setForeground(Color.RED);
 		lblZuVieleAttributsPunkte.setBounds(784, 499, 132, 48);
@@ -96,8 +98,6 @@ public class CharakterWerte {
 		kampfWerteFeld = new KampfWerteFeld(contentPane);	
 		attributsFeld = new AttributsFeld(contentPane, this, btnSpeichern);
 		eigenschaftsFeld = new EigenschaftsFeld(contentPane, this, btnSpeichern);
-
-		
 	}
 
 	//TODO

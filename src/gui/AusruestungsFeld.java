@@ -14,11 +14,11 @@ import model.Waffe;
 
 
 //diese Klasse ist noch WiP und stellt momentan keine Funktionalitaet.
-public class AusruestungsBoxen {
+public class AusruestungsFeld {
 	
 	List<Ausruestung> ausruestung = new ArrayList<Ausruestung>();
 
-	public AusruestungsBoxen(JPanel contentPane) {
+	public AusruestungsFeld(JPanel contentPane) {
 		
 		JTabbedPane tabbedPaneAusruestung = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneAusruestung.setBounds(10, 399, 781, 253);

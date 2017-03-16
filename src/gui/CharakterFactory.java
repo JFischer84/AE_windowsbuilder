@@ -7,7 +7,11 @@ import model.Mensch;
 import model.Spaeher;
 import model.Zauberwirker;
 import model.Zwerg;
-
+/**
+ * 
+ * Diese Klasse dient der Erstellung von Charakter-Objekten nach vorgegebenen Parametern.
+ *
+ */
 class CharakterFactory {
 	
 	private CharakterFactory() {}
