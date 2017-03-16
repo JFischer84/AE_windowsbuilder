@@ -50,5 +50,4 @@ class CharakterFactory {
 		}
 		return charakter;
 	}
-
 }

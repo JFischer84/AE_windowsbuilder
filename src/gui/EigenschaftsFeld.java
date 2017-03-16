@@ -25,8 +25,8 @@ public class EigenschaftsFeld {
 	private JLabel lblEigenschaftspunkteUebrig = new JLabel("");
 	private JButton btnSpeichern;
 	private CharakterWerte charakterWerte;
-	private int eigenschaftsPunkte = 8;
 	private static final int EIGENSCHAFTEN_MAX = 8;
+	private int eigenschaftsPunkte = EIGENSCHAFTEN_MAX;
 	private int staerke;
 	private int haerte;
 	private int bewegung;
@@ -39,8 +39,11 @@ public class EigenschaftsFeld {
 	private int geschickBonus;
 	private int verstandBonus;
 	private int auraBonus;
+	private boolean buttonGesperrtDurchEigenschaftsFeld = false;
 	
-	
+	public boolean getButtonGesperrtDurchEigenschaftsFeld() {
+		return buttonGesperrtDurchEigenschaftsFeld;
+	}
 	public int getStaerkeBonus() {
 		return staerkeBonus;
 	}
@@ -86,33 +89,23 @@ public class EigenschaftsFeld {
 	public int getHaerte() {
 		return haerte;
 	}
-	public void setHaerte(int haerte) {
-		this.haerte = haerte;
-	}
+	
 	public int getBewegung() {
 		return bewegung;
 	}
-	public void setBewegung(int bewegung) {
-		this.bewegung = bewegung;
-	}
+	
 	public int getGeschick() {
 		return geschick;
 	}
-	public void setGeschick(int geschick) {
-		this.geschick = geschick;
-	}
+	
 	public int getVerstand() {
 		return verstand;
 	}
-	public void setVerstand(int verstand) {
-		this.verstand = verstand;
-	}
+	
 	public int getAura() {
 		return aura;
 	}
-	public void setAura(int aura) {
-		this.aura = aura;
-	}
+	
 
 	public EigenschaftsFeld(JPanel contentPane, CharakterWerte charakterWerte, JButton btnSpeichern) {
 		this.btnSpeichern = btnSpeichern;
@@ -162,18 +155,10 @@ public class EigenschaftsFeld {
 		lblEigenschaftsPunkte.setBounds(812, 11, 44, 34);
 		contentPane.add(lblEigenschaftsPunkte);
 		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(656, 15, 18, 178);
-		contentPane.add(separator);
-
-		
 		lblEigenschaftspunkteUebrig.setFont(new Font("Tahoma", Font.BOLD, 9));
 		lblEigenschaftspunkteUebrig.setBounds(868, 11, 44, 34);
 		contentPane.add(lblEigenschaftspunkteUebrig);
-
 		lblEigenschaftspunkteUebrig.setText(Integer.toString(eigenschaftsPunkte));
-
 
 		JSpinner staerkeSpinner = new JSpinner(modelStaerke);
 		staerkeSpinner.addChangeListener(new ChangeListener() {
@@ -211,9 +196,6 @@ public class EigenschaftsFeld {
 		haerteSpinner.setBounds(868, 48, 44, 20);
 		contentPane.add(haerteSpinner);
 
-		
-
-
 		JSpinner bewegungSpinner = new JSpinner(modelBewegung);
 		bewegungSpinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -249,8 +231,6 @@ public class EigenschaftsFeld {
 		});
 		geschickSpinner.setBounds(868, 87, 44, 20);
 		contentPane.add(geschickSpinner);
-
-		
 
 		JSpinner verstandSpinner = new JSpinner(modelVerstand);
 		verstandSpinner.addChangeListener(new ChangeListener() {
@@ -288,6 +268,7 @@ public class EigenschaftsFeld {
 		auraSpinner.setBounds(868, 126, 44, 20);
 		contentPane.add(auraSpinner);	
 	}
+	
 	private int berechneVerbleibendeEigenschaftspunkte() {
 		return EIGENSCHAFTEN_MAX - (staerke + haerte + aura + verstand + geschick + bewegung);
 	}
@@ -297,11 +278,14 @@ public class EigenschaftsFeld {
 			btnSpeichern.setEnabled(false);
 			lblEigenschaftspunkteUebrig.setForeground(Color.red);
 			charakterWerte.lblZuVieleEigenschaftsPunkte().setVisible(true);
+			buttonGesperrtDurchEigenschaftsFeld = true;
 		} else {
-			btnSpeichern.setEnabled(true);
 			lblEigenschaftspunkteUebrig.setForeground(Color.black);
 			charakterWerte.lblZuVieleEigenschaftsPunkte().setVisible(false);
+			buttonGesperrtDurchEigenschaftsFeld = false;
+			if (!charakterWerte.getAttributsFeld().getButtonGesperrtDurchAttributsFeld()) {
+				btnSpeichern.setEnabled(true);
+			}
 		}
 	}
-
 }

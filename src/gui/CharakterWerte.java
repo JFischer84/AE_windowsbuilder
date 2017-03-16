@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 public class CharakterWerte {
 
 	
@@ -85,6 +87,11 @@ public class CharakterWerte {
 		lblZuVieleEigenschaftsPunkte.setBounds(784, 551, 132, 48);
 		lblZuVieleEigenschaftsPunkte.setVisible(false);
 		contentPane.add(lblZuVieleEigenschaftsPunkte);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(656, 15, 18, 178);
+		contentPane.add(separator);
 
 		kampfWerteFeld = new KampfWerteFeld(contentPane);	
 		attributsFeld = new AttributsFeld(contentPane, this, btnSpeichern);

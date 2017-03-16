@@ -46,5 +46,4 @@ class CharakterWriter {
 		bw.close();
 		fw.close();
 	}
-
 }

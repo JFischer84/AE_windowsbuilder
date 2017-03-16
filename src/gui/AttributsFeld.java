@@ -15,17 +15,22 @@ import javax.swing.event.ChangeListener;
 
 public class AttributsFeld {
 	
-	private JLabel lblAttributsPunkteUebrig = new JLabel("");
-	private int attributsPunkte = 20;
+	private static final int ATTRIBUTE_MAX = 20;
+	private int attributsPunkte = ATTRIBUTE_MAX;
 	private SpinnerModel modelAgilitaet = new SpinnerNumberModel(0, 0, 8, 1);
 	private SpinnerModel modelGeist = new SpinnerNumberModel(0, 0, 8, 1);
 	private SpinnerModel modelKoerper = new SpinnerNumberModel(0, 0, 8, 1);
-	private static final int ATTRIBUTE_MAX = 20;
+	private JLabel lblAttributsPunkteUebrig = new JLabel("");
 	private CharakterWerte charakterWerte;
 	private JButton btnSpeichern;
 	private int agilitaet;
 	private int geist;
 	private int koerper;
+	private boolean buttonGesperrtDurchAttributsFeld = false;
+	
+	public boolean getButtonGesperrtDurchAttributsFeld() {
+		return buttonGesperrtDurchAttributsFeld;
+	}
 	
 	public int getAgilitaet() {
 		return agilitaet;
@@ -128,15 +133,18 @@ public class AttributsFeld {
 			btnSpeichern.setEnabled(false);
 			charakterWerte.getLblZuVieleAttributsPunkte().setVisible(true);
 			lblAttributsPunkteUebrig.setForeground(Color.red);
+			buttonGesperrtDurchAttributsFeld = true;
 		} else {
-			btnSpeichern.setEnabled(true);
 			lblAttributsPunkteUebrig.setForeground(Color.black);
 			charakterWerte.getLblZuVieleAttributsPunkte().setVisible(false);
+			buttonGesperrtDurchAttributsFeld = false;
+			if (!charakterWerte.getEigenschaftsFeld().getButtonGesperrtDurchEigenschaftsFeld()) {
+				btnSpeichern.setEnabled(true);
+			}
 		}
 	}
 	
 	private int berechneVerbleibendeAttributspunkte() {
 		return ATTRIBUTE_MAX - (koerper + agilitaet + geist);
 	}
-
 }

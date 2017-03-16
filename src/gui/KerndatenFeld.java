@@ -18,6 +18,8 @@ public class KerndatenFeld {
 	private String ersterZauber;
 	private String StartTalent;
 	private String zweitesStarTtalent;
+	private JComboBox<String> comboBoxKlasse;
+	private JComboBox<String> comboBoxZauberwirkerTyp;
 
 	public String getVolk() {
 		return volk;
@@ -26,7 +28,6 @@ public class KerndatenFeld {
 	public String getCharakterKlasse() {
 		return charakterKlasse;
 	}
-	
 
 	public String getZauberWirkerTyp() {
 		return zauberWirkerTyp;
@@ -46,7 +47,8 @@ public class KerndatenFeld {
 
 	public KerndatenFeld(JPanel contentPane, CharakterWerte charakterWerte) {
 		this.charakterWerte = charakterWerte;
-		
+		comboBoxKlasse = new JComboBox<String>();
+		comboBoxZauberwirkerTyp = new JComboBox<String>();
 		
 		JLabel lblVolksfaehigkeiten = new JLabel("Volksfähigkeiten:");
 		lblVolksfaehigkeiten.setBounds(378, 206, 119, 16);
@@ -105,8 +107,6 @@ public class KerndatenFeld {
 				gegebenerVolksBonus = setzeBonus(comboBoxVolksBonus, gegebenerVolksBonus);
 				charakterWerte.berechneKampfwerte();
 			}
-
-		
 		});
 		
 		JComboBox<String> comboBoxKlassenBonus = new JComboBox<String>();
@@ -117,17 +117,6 @@ public class KerndatenFeld {
 				gegebenerKlassenBonus  = entferneBonus(gegebenerKlassenBonus);
 				gegebenerKlassenBonus = setzeBonus(comboBoxKlassenBonus, gegebenerKlassenBonus);
 				charakterWerte.berechneKampfwerte();
-			}
-		});
-		
-		JComboBox<String> comboBoxZweitesStartTalent = new JComboBox<String>();
-		comboBoxZweitesStartTalent.setBounds(178, 350, 191, 20);
-		contentPane.add(comboBoxZweitesStartTalent);
-		comboBoxZweitesStartTalent.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e){
-				if (comboBoxZweitesStartTalent.getSelectedItem() != null) {
-					zweitesStarTtalent = comboBoxZweitesStartTalent.getSelectedItem().toString();
-				}
 			}
 		});
 		
@@ -146,7 +135,6 @@ public class KerndatenFeld {
 		JComboBox<String> comboBoxStartTalent = new JComboBox<String>();
 		comboBoxStartTalent.setBounds(175, 280, 191, 20);
 		contentPane.add(comboBoxStartTalent);
-		JComboBox<String> comboBoxKlasse = new JComboBox<String>();
 		comboBoxStartTalent.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e){
 				if (comboBoxStartTalent.getSelectedItem() != null) {
@@ -155,7 +143,16 @@ public class KerndatenFeld {
 			}
 		});
 		
-		JComboBox<String> comboBoxZauberwirkerTyp = new JComboBox<String>();
+		JComboBox<String> comboBoxZweitesStartTalent = new JComboBox<String>();
+		comboBoxZweitesStartTalent.setBounds(178, 350, 191, 20);
+		contentPane.add(comboBoxZweitesStartTalent);
+		comboBoxZweitesStartTalent.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e){
+				if (comboBoxZweitesStartTalent.getSelectedItem() != null) {
+					zweitesStarTtalent = comboBoxZweitesStartTalent.getSelectedItem().toString();
+				}
+			}
+		});
 		
 		comboBoxZauberwirkerTyp.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -174,7 +171,6 @@ public class KerndatenFeld {
 				}
 			}
 		});
-		
 		comboBoxZauberwirkerTyp.setBounds(178, 127, 146, 20);
 		contentPane.add(comboBoxZauberwirkerTyp);
 		comboBoxZauberwirkerTyp.addItem("Heiler");
@@ -225,7 +221,6 @@ public class KerndatenFeld {
 				}
 			}			
 		});
-		
 		comboBoxKlasse.addItem("Krieger");
 		comboBoxKlasse.addItem("Späher");
 		comboBoxKlasse.addItem("Zauberwirker");
@@ -256,7 +251,6 @@ public class KerndatenFeld {
 				}
 			}	
 		});
-		
 		comboBoxVolk.addItem("Elf");
 		comboBoxVolk.addItem("Mensch");
 		comboBoxVolk.addItem("Zwerg");
@@ -447,7 +441,7 @@ public class KerndatenFeld {
 		charakterWerte.getEigenschaftsFeld().setVerstandBonus(charakterWerte.getEigenschaftsFeld().getVerstandBonus() - 1);
 			break;
 		case "Aura": bonus = "";
-		charakterWerte.getEigenschaftsFeld().setAuraBonus(charakterWerte.getEigenschaftsFeld().getAuraBonus() - 1);
+		charakterWerte.getEigenschaftsFeld().setAuraBonus(charakterWerte.getEigenschaftsFeld().getAura() - 1);
 			break;
 		default:
 			break;

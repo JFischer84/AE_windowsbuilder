@@ -12,6 +12,8 @@ import javax.swing.event.ChangeListener;
 import model.Ausruestung;
 import model.Waffe;
 
+
+//diese Klasse ist noch WiP und stellt momentan keine Funktionalitaet.
 public class AusruestungsBoxen {
 	
 	List<Ausruestung> ausruestung = new ArrayList<Ausruestung>();

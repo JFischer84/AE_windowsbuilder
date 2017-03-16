@@ -58,21 +58,34 @@ public class DunGenGui extends JFrame {
 		
 		
 		JLabel lblFehlerLabel = new JLabel("<html>Beim Speichern<br> ist ein fehler aufgetreten!</html>");
-		lblFehlerLabel.setForeground(Color.RED);
-		lblFehlerLabel.setBounds(795, 542, 117, 53);
+		lblFehlerLabel.setForeground(Color.red);
+		lblFehlerLabel.setBounds(795, 542, 118, 54);
 		lblFehlerLabel.setVisible(false);
 		contentPane.add(lblFehlerLabel);
 		
+		JLabel lblSpeichern = new JLabel("<html>Der Charakter wurde erfolgreich gespeichert!</html>");
+		lblSpeichern.setForeground(Color.green);
+		lblSpeichern.setBounds(795, 542, 120, 64);
+		lblSpeichern.setVisible(false);
+		contentPane.add(lblSpeichern);
+		
+		
+		
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (lblFehlerLabel.isVisible()) {
+					lblFehlerLabel.setVisible(false);
+				}
 				Charakter charakter;
 				charakter = CharakterFactory.createCharakter(kerndatenFeld.getVolk(), kerndatenFeld.getCharakterKlasse());
 				charakter = CharakterMapper.charakterWerteSetzen(charakter, charakterWerte, kerndatenFeld, kopfzeile);
 				try {
 					CharakterWriter.writeCharakter(charakter);
+					lblSpeichern.setVisible(true);
 				} catch (IOException e1) {
 					lblFehlerLabel.setVisible(true);
 					e1.printStackTrace();
+					lblSpeichern.setVisible(false);
 				}
 			}
 		});

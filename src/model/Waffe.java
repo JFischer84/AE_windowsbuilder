@@ -1,4 +1,6 @@
 package model;
+
+//diese Klasse ist noch WiP und stellt momentan keine Funktionalitaet.
 public class Waffe extends Ausruestung{
 	private int waffenbonus;
 	private String besonderes;

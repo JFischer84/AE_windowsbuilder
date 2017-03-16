@@ -39,9 +39,6 @@ class CharakterMapper {
 			zauberwirker.setZauberWirkerTyp(kerndatenFeld.getZauberWirkerTyp());
 			charakter.setCharakterKlasse(zauberwirker);
 		}
-		
 		return charakter;
 	}
-	
-
 }

@@ -1,5 +1,6 @@
 package model;
 
+//diese Klasse ist noch WiP und stellt momentan keine Funktionalitaet.
 public abstract class Ausruestung {
 	
 	private String name;
