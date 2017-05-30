@@ -56,7 +56,7 @@ public class KerndatenFeld {
 		comboBoxKlasse = new JComboBox<String>();
 		comboBoxZauberwirkerTyp = new JComboBox<String>();
 		
-		JLabel lblVolksfaehigkeiten = new JLabel("Volksfähigkeiten:");
+		JLabel lblVolksfaehigkeiten = new JLabel("Volksf\u00e4higkeiten:");
 		lblVolksfaehigkeiten.setBounds(378, 206, 119, 16);
 		contentPane.add(lblVolksfaehigkeiten);
 		
@@ -211,13 +211,13 @@ public class KerndatenFeld {
 					}
 					
 				} else if (comboBoxKlasse.getSelectedItem() == "Krieger") {
-					comboBoxKlassenBonus.addItem("Stärke");
-					comboBoxKlassenBonus.addItem("Härte");
+					comboBoxKlassenBonus.addItem("St\u00e4rke");
+					comboBoxKlassenBonus.addItem("H\u00e4rte");
 					fuellecomboBoxTalent(comboBoxStartTalent, comboBoxKlasse, comboBoxZauberwirkerTyp);
 					fuellecomboBoxTalent(comboBoxZweitesStartTalent, comboBoxKlasse, comboBoxZauberwirkerTyp);
 					
 					fuelleStartTalentKrieger(comboBoxStartTalent);
-				} else if (comboBoxKlasse.getSelectedItem() == "Späher") {
+				} else if (comboBoxKlasse.getSelectedItem() == "Sp\u00e4her") {
 					comboBoxKlassenBonus.addItem("Bewegung");
 					comboBoxKlassenBonus.addItem("Geschick");
 					fuellecomboBoxTalent(comboBoxStartTalent, comboBoxKlasse, comboBoxZauberwirkerTyp);
@@ -228,7 +228,7 @@ public class KerndatenFeld {
 			}			
 		});
 		comboBoxKlasse.addItem("Krieger");
-		comboBoxKlasse.addItem("Späher");
+		comboBoxKlasse.addItem("Sp\u00e4her");
 		comboBoxKlasse.addItem("Zauberwirker");
 		comboBoxKlasse.setBounds(10, 127, 146, 20);
 		contentPane.add(comboBoxKlasse);
@@ -244,7 +244,7 @@ public class KerndatenFeld {
 				comboBoxZweitesStartTalent.setEnabled(false);
 				if (comboBoxVolk.getSelectedItem() == "Elf") {
 					fuelleVolksBonusElf(comboBoxVolksBonus);
-					lblVolksfaehigkeitenAnzeige.setText("Leichtfüßig, Nachtsicht, Unsterblich");
+					lblVolksfaehigkeitenAnzeige.setText("Leichtf\u00fc\u00dfig, Nachtsicht, Unsterblich");
 				} else if (comboBoxVolk.getSelectedItem() == "Mensch") {
 					fuelleVolksBonusElf(comboBoxVolksBonus);
 					fuelleVoksBonusMensch(comboBoxVolksBonus);
@@ -253,7 +253,7 @@ public class KerndatenFeld {
 					comboBoxZweitesStartTalent.setEnabled(true);
 				} else if (comboBoxVolk.getSelectedItem() == "Zwerg") {
 					fuelleVolksBonusZwerg(comboBoxVolksBonus);
-					lblVolksfaehigkeitenAnzeige.setText("Dunkelsicht, Langlebig, Zäh");
+					lblVolksfaehigkeitenAnzeige.setText("Dunkelsicht, Langlebig, Z\u00e4h");
 				}
 			}	
 		});
@@ -270,7 +270,7 @@ public class KerndatenFeld {
 		comboBoxErsterZauber.addItem("Magie identifizieren");
 		comboBoxErsterZauber.addItem("Magische Waffe");
 		comboBoxErsterZauber.addItem("Magisches Schloss");
-		comboBoxErsterZauber.addItem("Öffnen");
+		comboBoxErsterZauber.addItem("\u00d6ffnen");
 		comboBoxErsterZauber.addItem("Zaubertrick");
 	}
 
@@ -282,7 +282,7 @@ public class KerndatenFeld {
 		comboBoxErsterZauber.addItem("Magie identifizieren");
 		comboBoxErsterZauber.addItem("Magische Waffe");
 		comboBoxErsterZauber.addItem("Magisches Schloss");
-		comboBoxErsterZauber.addItem("Öffnen");
+		comboBoxErsterZauber.addItem("\u00d6ffnen");
 		comboBoxErsterZauber.addItem("Zaubertrick");
 	}
 
@@ -296,7 +296,7 @@ public class KerndatenFeld {
 		comboBoxErsterZauber.addItem("Magie entdecken");
 		comboBoxErsterZauber.addItem("Magische Waffe");
 		comboBoxErsterZauber.addItem("Niesanfall");
-		comboBoxErsterZauber.addItem("Tiere besänftigen");
+		comboBoxErsterZauber.addItem("Tiere bes\u00e4nftigen");
 		comboBoxErsterZauber.addItem("Verteidigung");
 		comboBoxErsterZauber.addItem("Vertreiben");
 		comboBoxErsterZauber.addItem("Wasser weihen");
@@ -307,9 +307,9 @@ public class KerndatenFeld {
 	}
 
 	private void fuelleStartTalentHeiler(JComboBox<String> comboBoxStartTalent) {
-		comboBoxStartTalent.addItem("Fürsorger");
+		comboBoxStartTalent.addItem("F\u00fcrsorger");
 		comboBoxStartTalent.addItem("Manipulator");
-		comboBoxStartTalent.addItem("Rüstzauberer");
+		comboBoxStartTalent.addItem("R\u00fcstzauberer");
 	}
 
 	private void fuelleStartTalentZauberwirker(JComboBox<String> comboBoxStartTalent) {
@@ -324,27 +324,27 @@ public class KerndatenFeld {
 		comboBoxStartTalent.addItem("Diebeskunst");
 		comboBoxStartTalent.addItem("Flink");
 		comboBoxStartTalent.addItem("Heimlichkeit");
-		comboBoxStartTalent.addItem("Jäger");
-		comboBoxStartTalent.addItem("Schütze");
+		comboBoxStartTalent.addItem("J\u00e4ger");
+		comboBoxStartTalent.addItem("Sch\u00fctze");
 	}
 
 	private void fuelleStartTalentKrieger(JComboBox<String> comboBoxStartTalent) {
 		comboBoxStartTalent.addItem("Blocker");
-		comboBoxStartTalent.addItem("Kämpfer");
+		comboBoxStartTalent.addItem("K\u00e4mpfer");
 		comboBoxStartTalent.addItem("Parade");
 		comboBoxStartTalent.addItem("Standhaft");
 		comboBoxStartTalent.addItem("Zwei Waffen");
 	}
 	
 	private void fuelleVolksBonusZwerg(JComboBox<String> comboBoxVolksBonus) {
-		comboBoxVolksBonus.addItem("Stärke");
-		comboBoxVolksBonus.addItem("Härte");
+		comboBoxVolksBonus.addItem("St\u00e4rke");
+		comboBoxVolksBonus.addItem("H\u00e4rte");
 		comboBoxVolksBonus.addItem("Geschick");
 	}
 
 	private void fuelleVoksBonusMensch(JComboBox<String> comboBoxVolksBonus) {
 		comboBoxVolksBonus.addItem("Stärke");
-		comboBoxVolksBonus.addItem("Härte");
+		comboBoxVolksBonus.addItem("H\u00e4rte");
 		comboBoxVolksBonus.addItem("Verstand");
 	}
 
@@ -362,7 +362,7 @@ public class KerndatenFeld {
 		comboBoxStartTalent.addItem("Diener des Lichts");
 		comboBoxStartTalent.addItem("Einstecker");
 		comboBoxStartTalent.addItem("Genesung");
-		comboBoxStartTalent.addItem("Glückspilz");
+		comboBoxStartTalent.addItem("Gl\u00fcckspilz");
 		comboBoxStartTalent.addItem("Handwerk");
 		comboBoxStartTalent.addItem("Instrument");
 		comboBoxStartTalent.addItem("Magieresistent");
@@ -379,35 +379,35 @@ public class KerndatenFeld {
 			comboBoxStartTalent.addItem("Umdenken");
 			comboBoxStartTalent.addItem("Wechsler");
 			if (comboBoxZauberwirkerTyp.getSelectedItem() == "Heiler") {
-				comboBoxStartTalent.addItem("Fürsorger");
+				comboBoxStartTalent.addItem("F\u00fcrsorger");
 				comboBoxStartTalent.addItem("Manipulator");
-				comboBoxStartTalent.addItem("Rüstzauberer");
+				comboBoxStartTalent.addItem("R\u00fcstzauberer");
 			} else if (comboBoxZauberwirkerTyp.getSelectedItem() == "Schwarzmagier") {
 				comboBoxStartTalent.addItem("Feuermagier");
 			}
 	}  else if (comboBoxKlasse.getSelectedItem() == "Krieger") {
 		comboBoxStartTalent.addItem("Blocker");
-		comboBoxStartTalent.addItem("Kämpfer");
+		comboBoxStartTalent.addItem("K\u00e4mpfer");
 		comboBoxStartTalent.addItem("Parade");
 		comboBoxStartTalent.addItem("Standhaft");
 		comboBoxStartTalent.addItem("Zwei Waffen");
-	} else if (comboBoxKlasse.getSelectedItem() == "Späher") {
+	} else if (comboBoxKlasse.getSelectedItem() == "Sp\u00e4her") {
 		comboBoxStartTalent.addItem("Akrobat");
 		comboBoxStartTalent.addItem("Diebeskunst");
 		comboBoxStartTalent.addItem("Flink");
 		comboBoxStartTalent.addItem("Heimlichkeit");
-		comboBoxStartTalent.addItem("Jäger");
-		comboBoxStartTalent.addItem("Schütze");
+		comboBoxStartTalent.addItem("J\u00e4ger");
+		comboBoxStartTalent.addItem("Sch\u00fctze");
 	}
 }
 	
 	private String setzeBonus(JComboBox<String> comboBoxBonus, String bonus) {
 		if (comboBoxBonus.getSelectedItem() != null) {
 			switch (comboBoxBonus.getSelectedItem().toString()) {
-			case "Stärke": bonus = "Stärke";
+			case "St\u00e4rke": bonus = "St\u00e4rke";
 			charakterWerte.getEigenschaftsFeld().setStaerkeBonus(charakterWerte.getEigenschaftsFeld().getStaerkeBonus() + 1);
 				break;
-			case "Härte": bonus = "Härte";
+			case "H\u00e4rte": bonus = "H\u00e4rte";
 			charakterWerte.getEigenschaftsFeld().setHaerteBonus(charakterWerte.getEigenschaftsFeld().getHaerteBonus() + 1);
 				break;
 			case "Bewegung": bonus = "Bewegung";
@@ -431,10 +431,10 @@ public class KerndatenFeld {
 	
 	private String entferneBonus(String bonus) {
 		switch (bonus) {
-		case "Stärke": bonus = "";
+		case "St\u00e4rke": bonus = "";
 			charakterWerte.getEigenschaftsFeld().setStaerkeBonus(charakterWerte.getEigenschaftsFeld().getStaerkeBonus() - 1);
 			break;
-		case "Härte": bonus = "";
+		case "H\u00e4rte": bonus = "";
 		charakterWerte.getEigenschaftsFeld().setHaerteBonus(charakterWerte.getEigenschaftsFeld().getHaerteBonus() - 1);
 			break;
 		case "Bewegung": bonus = "";

@@ -103,7 +103,7 @@ public class KampfWerteFeld {
 		charakterWertePanel.add(lblAbwehr, gbc_lblAbwehr);
 		lblAbwehr.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel lblSchiessen = new JLabel("Schießen:");
+		JLabel lblSchiessen = new JLabel("Schie\u00dfen:");
 		GridBagConstraints gbc_lblSchiessen = new GridBagConstraints();
 		gbc_lblSchiessen.anchor = GridBagConstraints.WEST;
 		gbc_lblSchiessen.insets = new Insets(0, 0, 5, 5);

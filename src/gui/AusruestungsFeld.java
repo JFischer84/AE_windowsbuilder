@@ -51,7 +51,7 @@ public class AusruestungsFeld {
 		chckbxArmbrustSchwer.setBounds(6, 76, 162, 23);
 		waffenPanel.add(chckbxArmbrustSchwer);
 		
-		JCheckBox chckbxBihaender = new JCheckBox("Bihänder");
+		JCheckBox chckbxBihaender = new JCheckBox("Bih\u00e4nder");
 		chckbxBihaender.setBounds(6, 111, 128, 23);
 		waffenPanel.add(chckbxBihaender);
 		
@@ -99,7 +99,7 @@ public class AusruestungsFeld {
 		chckbxSchlachtbeil.setBounds(303, 76, 128, 23);
 		waffenPanel.add(chckbxSchlachtbeil);
 		
-		JCheckBox chckbxSchlachtgeissel = new JCheckBox("Schlachtgeißel");
+		JCheckBox chckbxSchlachtgeissel = new JCheckBox("Schlachtgei\u00dfel");
 		chckbxSchlachtgeissel.setBounds(303, 111, 128, 23);
 		waffenPanel.add(chckbxSchlachtgeissel);
 		
@@ -148,7 +148,7 @@ public class AusruestungsFeld {
 		waffenPanel.add(chckbxStreitaxt);
 		
 		JPanel ruestungPanel = new JPanel();
-		tabbedPaneAusruestung.addTab("Rüstungen", null, ruestungPanel, null);
+		tabbedPaneAusruestung.addTab("R\u00fcstungen", null, ruestungPanel, null);
 		ruestungPanel.setLayout(null);
 		
 		JCheckBox chckbxKettenpanzer = new JCheckBox("Kettenpanzer");
@@ -200,7 +200,7 @@ public class AusruestungsFeld {
 		ruestungPanel.add(chckbxSchildTurm);
 		
 		
-		JLabel lblGoldmuenzen = new JLabel("Goldmünzen:");
+		JLabel lblGoldmuenzen = new JLabel("Goldm\u00fcnzen:");
 		lblGoldmuenzen.setBounds(512, 387, 89, 16);
 		contentPane.add(lblGoldmuenzen);
 		

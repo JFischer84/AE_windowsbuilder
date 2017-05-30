@@ -21,17 +21,17 @@ class CharakterWriter {
 		
 		bw.write("Name: " + charakter.getName() + "      " + "Volk: " + charakter.getVolk().getVolksName() + "      " + "Klasse: " + charakter.getCharakterKlasse().getKlassenName());
 		bw.write("\n");
-		bw.write("Volksfähigkeiten: " + charakter.getVolk().getVolksFaehigkeit() + "    " + "Geschlecht: " + charakter.getGeschlecht());
+		bw.write("Volksf\u00e4higkeiten: " + charakter.getVolk().getVolksFaehigkeit() + "    " + "Geschlecht: " + charakter.getGeschlecht());
 		bw.write("\n");
 		bw.write("Attribute: ");
 		bw.write("\n");
-		bw.write("Körper: " + charakter.getKoerper() + "    " + "Agilität: " + charakter.getAgilitaet() + "    " + "Geist: " + charakter.getGeist());
+		bw.write("K\u00f6rper: " + charakter.getKoerper() + "    " + "Agilität: " + charakter.getAgilitaet() + "    " + "Geist: " + charakter.getGeist());
 		bw.write("\n");
 		bw.write("Eigenschaften: ");
 		bw.write("\n");
-		bw.write("Stärke: " + charakter.getStaerke() + "    " + "Bewegung: " + charakter.getBewegung() + "    " + "Verstand: " + charakter.getVerstand());
+		bw.write("St\u00e4rke: " + charakter.getStaerke() + "    " + "Bewegung: " + charakter.getBewegung() + "    " + "Verstand: " + charakter.getVerstand());
 		bw.write("\n");
-		bw.write("Härte: " + charakter.getHaerte() + "    " + "Geschickt: " + charakter.getGeschick() + "    " + "Aura: " + charakter.getAura());
+		bw.write("H\u00e4rte: " + charakter.getHaerte() + "    " + "Geschickt: " + charakter.getGeschick() + "    " + "Aura: " + charakter.getAura());
 		bw.write("\n");
 		bw.write("Kampfwerte: ");
 		bw.write("\n");

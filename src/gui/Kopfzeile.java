@@ -35,7 +35,7 @@ public class Kopfzeile {
 
 
 	public Kopfzeile(JPanel contentPane) {
-		JRadioButton rdbtnMaennlich = new JRadioButton("Männlich");
+		JRadioButton rdbtnMaennlich = new JRadioButton("M\u00e4nnlich");
 		rdbtnMaennlich.setBounds(271, 22, 141, 23);
 		contentPane.add(rdbtnMaennlich);
 		rdbtnMaennlich.addActionListener(new ActionListener() {
