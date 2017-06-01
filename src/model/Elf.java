@@ -2,7 +2,7 @@ package model;
 
 public class Elf implements Volk {
 	
-	private String volksFaehigkeit = "Leichtfüßig, Nachtsicht, Unsterblich";
+	private String volksFaehigkeit = "Leichtf\u00fc\u00dfig, Nachtsicht, Unsterblich";
 	private String volksName = "Elf";
 
 	@Override
