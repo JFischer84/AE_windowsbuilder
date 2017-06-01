@@ -80,13 +80,13 @@ public class CharakterWerte {
 	public CharakterWerte(JPanel contentPane, JButton btnSpeichern) {
 		lblZuVieleAttributsPunkte = new JLabel("<html>Sie haben zu viele<br>Attributspunkte ausgegeben!</html>");
 		lblZuVieleAttributsPunkte.setForeground(Color.RED);
-		lblZuVieleAttributsPunkte.setBounds(784, 499, 132, 48);
+		lblZuVieleAttributsPunkte.setBounds(800, 499, 132, 48);
 		lblZuVieleAttributsPunkte.setVisible(false);
 		contentPane.add(lblZuVieleAttributsPunkte);
 		
 		lblZuVieleEigenschaftsPunkte = new JLabel("<html>Sie haben zu viele<br>Eigenschaftspunkte ausgegeben!</html>");
 		lblZuVieleEigenschaftsPunkte.setForeground(Color.RED);
-		lblZuVieleEigenschaftsPunkte.setBounds(784, 551, 132, 48);
+		lblZuVieleEigenschaftsPunkte.setBounds(800, 551, 132, 48);
 		lblZuVieleEigenschaftsPunkte.setVisible(false);
 		contentPane.add(lblZuVieleEigenschaftsPunkte);
 		
@@ -120,7 +120,4 @@ public class CharakterWerte {
 		kampfWerteFeld.getLblZaubernPunkte().setText(Integer.toString(zaubern));
 		kampfWerteFeld.getLblZielzauberPunkte().setText(Integer.toString(zielzauber));
 	}
-	
-
-
 }

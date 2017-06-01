@@ -25,7 +25,7 @@ class CharakterWriter {
 		bw.write("\n");
 		bw.write("Attribute: ");
 		bw.write("\n");
-		bw.write("K\u00f6rper: " + charakter.getKoerper() + "    " + "Agilität: " + charakter.getAgilitaet() + "    " + "Geist: " + charakter.getGeist());
+		bw.write("K\u00f6rper: " + charakter.getKoerper() + "    " + "Agilit\u00e4t: " + charakter.getAgilitaet() + "    " + "Geist: " + charakter.getGeist());
 		bw.write("\n");
 		bw.write("Eigenschaften: ");
 		bw.write("\n");
@@ -38,7 +38,7 @@ class CharakterWriter {
 		bw.write("Lebenskraft: " + charakter.getLebenskraft() + "    " + "Abwehr: " + charakter.getAbwehr() + "    " + "Initiative: " + charakter.getInitiative() + 
 				"    " + "Laufen: " + charakter.getLaufen());
 		bw.write("\n");
-		bw.write("Schlagen: " + charakter.getSchlagen() + "    " + "Schießen: " + charakter.getSchiessen() + "    " + "Zaubern: " + charakter.getZaubern() + 
+		bw.write("Schlagen: " + charakter.getSchlagen() + "    " + "Schie\u00dfen: " + charakter.getSchiessen() + "    " + "Zaubern: " + charakter.getZaubern() + 
 				"    " + "Zielzauber: " + charakter.getZielzauber());
 		bw.write("\n");
 		bw.write("Erster Talentpunkt: " + charakter.getErsterTalentpunkt() + "    " + "Zweiter Talentpunkt: " + charakter.getZweiterTalentpunkt());
