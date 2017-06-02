@@ -1,11 +1,16 @@
 package model;
 
+import org.hibernate.annotations.Table;
+
 /**
  * 
  * Diese Klasse stellt das Model für den Charakter.
  *
  */
+@Table(appliesTo = "charakter")
 public class Charakter {
+	
+	
 	private String name;
 	private String geschlecht;
 	private CharakterKlasse charakterKlasse;
