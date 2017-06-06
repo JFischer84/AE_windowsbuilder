@@ -1,5 +1,9 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import org.hibernate.annotations.Table;
 
 /**
@@ -10,29 +14,53 @@ import org.hibernate.annotations.Table;
 @Table(appliesTo = "charakter")
 public class Charakter {
 	
-	
+	@Column(name = "name")
 	private String name;
+	@Column(name = "geschlecht")
 	private String geschlecht;
+	@OneToOne
+	@JoinColumn(name = "charakterklasse_id")
 	private CharakterKlasse charakterKlasse;
+	@OneToOne
+	@JoinColumn(name = "volk_id")
 	private Volk volk;
+	@Column(name = "koerper")
 	private int koerper;
+	@Column(name = "agilitaet")
 	private int agilitaet;
+	@Column(name = "geist")
 	private int geist;
+	@Column(name = "staerke")
 	private int staerke;
+	@Column(name = "haerte")
 	private int haerte;
+	@Column(name = "bewegung")
 	private int bewegung;
+	@Column(name = "laufen")
 	private double laufen;
+	@Column(name = "geschick")
 	private int geschick;
+	@Column(name = "verstand")
 	private int verstand;
+	@Column(name = "aura")
 	private int aura;
+	@Column(name = "lebenskraft")
 	private int lebenskraft;
+	@Column(name = "schlagen")
 	private int schlagen;
+	@Column(name = "abwehr")
 	private int abwehr;
+	@Column(name = "schiessen")
 	private int schiessen;
+	@Column(name = "initiative")
 	private int initiative;
+	@Column(name = "zaubern")
 	private int zaubern;
+	@Column(name = "zielzauber")
 	private int zielzauber;
+	@Column(name = "ersterTalentpunkt")
 	private String ersterTalentpunkt;
+	@Column(name = "zweiterTalentpunkt")
 	private String zweiterTalentpunkt;
 
 	public String getName() {
