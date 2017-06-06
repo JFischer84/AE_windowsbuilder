@@ -1,6 +1,9 @@
  package gui;
 import java.awt.EventQueue;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,7 +41,6 @@ public class DunGenGui extends JFrame {
 	private DefaultListModel listModel;
 	private JButton btnNewButton;
 	private JButton btnCharakterLschen;
-	
 	
 
 	/**
@@ -98,9 +100,13 @@ public class DunGenGui extends JFrame {
 		
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+			
+				
 				if (lblFehlerLabel.isVisible()) {
 					lblFehlerLabel.setVisible(false);
 				}
+				
 				Charakter charakter;
 				charakter = CharakterFactory.createCharakter(kerndatenFeld.getVolk(), kerndatenFeld.getCharakterKlasse());
 				charakter = CharakterMapper.charakterWerteSetzen(charakter, charakterWerte, kerndatenFeld, kopfzeile);
@@ -127,6 +133,11 @@ public class DunGenGui extends JFrame {
 		ladenPane.add(list);
 		
 		btnNewButton = new JButton("Charakter Laden");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnNewButton.setBounds(122, 11, 212, 33);
 		ladenPane.add(btnNewButton);
 		

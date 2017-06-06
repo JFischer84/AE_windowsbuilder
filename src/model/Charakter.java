@@ -1,17 +1,17 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.Table;
 
 /**
  * 
  * Diese Klasse stellt das Model für den Charakter.
  *
  */
-@Table(appliesTo = "charakter")
+@Entity
 public class Charakter {
 	
 	@Column(name = "name")
